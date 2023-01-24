@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $jml_users = DB::table('users')->count();
+        $jml_sm = DB::table('surat_masuks')->count();
+        $jml_sk = DB::table('surat_keluars')->count();
+
+        return view('home', compact('jml_users', 'jml_sm', 'jml_sk'));
     }
 }

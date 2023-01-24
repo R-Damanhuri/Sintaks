@@ -53,14 +53,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label"for="jenis_id">Jenis Surat</label>
+                                    <label class="col-sm-3 col-form-label"for="jenis_surat_id">Jenis Surat</label>
                                     <div class="col-sm-9">
-                                        <select class="form-control mt-2 @error('jenis_id') is-invalid @enderror"
-                                            name="jenis_id" id="jenis_id">
+                                        <select class="form-control mt-2 @error('jenis_surat_id') is-invalid @enderror"
+                                            name="jenis_surat_id" id="jenis_surat_id">
                                             <option value="">--- Pilih ---</option>
                                             @foreach ($jenis as $item)
                                                 <option value="{{ $item->id }}"
-                                                    @if (old('jenis_id')== $item->id)
+                                                    @if (old('jenis_surat_id')== $item->id)
                                                         {{'selected'}}
                                                     @endif
                                                     >
@@ -68,7 +68,7 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        @error('jenis_id')
+                                        @error('jenis_surat_id')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>

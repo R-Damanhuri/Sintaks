@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\SuratMasuk;
 
-class JenisSurat extends Model
+class Disposisi extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,6 @@ class JenisSurat extends Model
 
     public function surat_masuk()
     {
-        return $this->hasMany(SuratMasuk::class);
+        return $this->belongsTo(SuratMasuk::class);
     }
-
-    public $incrementing = false;
 }

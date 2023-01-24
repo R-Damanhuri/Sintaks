@@ -19,7 +19,7 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h3 class="font-weight-normal mb-3">Surat Masuk <i class="mdi mdi-email-open icon-md float-end"></i>
                     </h3>
-                    <h1>20</h1>
+                    <h1>{{ $jml_sm }}</h1>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h3 class="font-weight-normal mb-3">Surat Keluar <i class="mdi mdi-email icon-md float-end"></i>
                     </h3>
-                    <h1>20</h1>
+                    <h1>{{ $jml_sk }}</h1>
                 </div>
             </div>
         </div>
@@ -37,9 +37,9 @@
             <div class="card bg-gradient-success card-img-holder text-white">
                 <div class="card-body">
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h3 class="font-weight-normal mb-3">Karyawan <i class="mdi mdi-account-group icon-md float-end"></i>
+                    <h3 class="font-weight-normal mb-3">Pengguna <i class="mdi mdi-account-group icon-md float-end"></i>
                     </h3>
-                    <h1>2</h1>
+                    <h1>{{ $jml_users }}</h1>
                 </div>
             </div>
         </div>

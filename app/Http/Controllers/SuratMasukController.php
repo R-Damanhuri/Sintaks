@@ -33,17 +33,17 @@ class SuratMasukController extends Controller
     {
         $rules = [
             'no_surat' => 'required|unique:surat_masuks,no_surat',
-            'jenis_id' => 'required',
+            'jenis_surat_id' => 'required',
             'perihal' => 'required',
             'pengirim' => 'required',
             'tanggal_surat' => 'required|before_or_equal:' . date(DATE_ATOM),
             'tanggal_terima' => 'required|before_or_equal:' . date(DATE_ATOM),
-            'file' => 'required|mimes:pdf,jpg',
+            'file' => 'required|mimes:pdf',
         ];
 
         $message = [
             'no_surat.required' => 'Nomor surat harus diisi.',
-            'jenis_id.required' => 'Jenis surat harus diisi.',
+            'jenis_surat_id.required' => 'Jenis surat harus diisi.',
             'perihal.required' => 'Perihal harus diisi.',
             'pengirim.required' => 'Pengirim harus diisi.',
             'tanggal_surat.required' => 'Tanggal surat harus diisi.',
@@ -53,7 +53,7 @@ class SuratMasukController extends Controller
             'no_surat.unique' => 'Nomor surat sudah ada.',
             'tanggal_surat.before_or_equal' => 'Tanggal surat tidak boleh lebih dari tanggal sekarang.',
             'tanggal_terima.before_or_equal' => 'Tanggal terima tidak boleh lebih dari tanggal sekarang.',
-            'file.mimes' => 'Format file yang diterima hanya PDF atau JPG.',
+            'file.mimes' => 'Format file yang diterima hanya PDF.',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $message);
@@ -81,6 +81,7 @@ class SuratMasukController extends Controller
     public function hapus($id)
     {
         $data = SuratMasuk::find($id);
+        $data->disposisi()->delete();
 
         if (File::exists(public_path('FileSuratMasuk/' . $data->file))) {
             File::delete(public_path('FileSuratMasuk/' . $data->file));
@@ -97,38 +98,26 @@ class SuratMasukController extends Controller
         $rules = [
             'no_surat' => Rule::unique('surat_masuks')->ignore($request->no_surat),
             'no_surat' => 'required',
-            'jenis_id' => 'required',
+            'jenis_surat_id' => 'required',
             'perihal' => 'required',
             'pengirim' => 'required',
             'tanggal_surat' => 'required|before_or_equal:' . date(DATE_ATOM),
-            'file' => 'mimes:pdf,jpg',
+            'file' => 'mimes:pdf',
         ];
 
         $message = [
             'no_surat.required' => 'Nomor surat harus diisi.',
-            'jenis_id.required' => 'Jenis surat harus diisi.',
+            'jenis_surat_id.required' => 'Jenis surat harus diisi.',
             'perihal.required' => 'Perihal harus diisi.',
             'pengirim.required' => 'Pengirim harus diisi.',
             'tanggal_surat.required' => 'Tanggal surat harus diisi.',
 
             'no_surat.unique' => 'Nomor surat sudah ada.',
             'tanggal_surat.before_or_equal' => 'Tanggal surat tidak boleh lebih dari tanggal sekarang.',
-            'file.mimes' => 'Format file yang diterima hanya PDF atau JPG.',
+            'file.mimes' => 'Format file yang diterima hanya PDF.',
         ];
 
         $surat = SuratMasuk::find($id);
-        if($request['jenis_id'] == null){
-            $request['jenis_id'] = $surat->jenis_id;
-        }
-        if($request['perihal'] == null){
-            $request['perihal'] = $surat->perihal;
-        }
-        if($request['pengirim'] == null){
-            $request['pengirim'] = $surat->pengirim;
-        }
-        if($request['tanggal_surat'] == null){
-            $request['tanggal_surat'] = $surat->tanggal_surat;
-        }
         
         $validasi = Validator::make($request->all(), $rules, $message);
 
@@ -137,11 +126,8 @@ class SuratMasukController extends Controller
                 ->route('suratmasuk')
                 ->with('update_fails', 'Data Gagal Diubah.')
                 ->withInput($request->except('key'))
-                ->withErrors('error', $validasi);
+                ->withErrors($validasi);
         } else {
-            
-            $jenis = JenisSurat::find($request->jenis_id);
-            $request['jenis_surat'] = $jenis->nama_jenis;
 
             $data = SuratMasuk::find($id);
             $data->update($request->all());

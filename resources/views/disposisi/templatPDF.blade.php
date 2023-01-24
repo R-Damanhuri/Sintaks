@@ -34,27 +34,25 @@ h2 {
 </head>
 <body>
 
-<h2>Laporan Surat Masuk</h2>
+<h2>Disposisi Surat Masuk</h2>
 <table id="myTable">
     <thead>
         <tr>
-            <th>No. Surat</th>
-            <th>Jenis Surat</th>
-            <th>Perihal</th>
-            <th>Pengirim</th>
-            <th>Tanggal Surat</th>
+            <th>No</th>
+            <th>Intruksi</th>
+            <th>Daftar Penerima</th>
+            <th>Nomor Surat</th>
+            <th>Catatan</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($data as $row)
             <tr>
-                <td>{{ $row->no_surat }}</td>
-                <td>{{ $row->jenis_surat->nama_jenis }}</td>
-                <td>{{ $row->perihal }}</td>
-                <td>{{ $row->pengirim }}</td>
-                <td>{{ date('d-m-Y', strtotime($row->tanggal_surat)) }}</td>
+                <td>{{ $data->id }}</td>
+                <td>{{ $data->intruksi }}</td>
+                <td>{{ $data->kepada }}</td>
+                <td>{{ $data->surat_masuk->no_surat }}</td>
+                <td>{{ $data->catatan }}</td>
             </tr>
-        @endforeach
     </tbody>
 </table>
 

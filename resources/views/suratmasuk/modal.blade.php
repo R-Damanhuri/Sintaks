@@ -31,19 +31,19 @@
                         <label for="no_surat">Nomor Surat</label>
                         <input readonly type="text" class="form-control @error('no_surat') is-invalid @enderror"
                             name="no_surat" id="no_surat" placeholder="Nomor Surat"
-                            value="{{ $row->no_surat }}">
+                            value="{{ old('no_surat', $row->no_surat) }}">
                         @error('no_surat')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="jenis_id">Jenis Surat</label>
-                        <select class="form-control @error('jenis_id') is-invalid @enderror" name="jenis_id"
-                            id="jenis_id">
+                        <select class="form-control @error('jenis_surat_id') is-invalid @enderror" name="jenis_surat_id"
+                            id="jenis_surat_id">
                             <option value="">--- Pilih ---</option>
                             @foreach ($jenis as $item)
                                 <option value="{{ $item->id }}"
-                                    @if ($row->jenis_id == $item->id) {{ 'selected' }} @endif>
+                                    @if ($row->jenis_surat_id == $item->id) {{ 'selected' }} @endif>
                                     {{ $item->nama_jenis }}
                                 </option>
                             @endforeach
@@ -55,7 +55,7 @@
                     <div class="form-group">
                         <label for="perihal">Perihal</label>
                         <input type="text" class="form-control @error('perihal') is-invalid @enderror" name="perihal"
-                            id="perihal" placeholder="Perihal" value=" {{ $row->perihal }}">
+                            id="perihal" placeholder="Perihal" value=" {{ old('perihal',$row->perihal) }}">
                         @error('perihal')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -64,7 +64,7 @@
                         <label for="pengirim">Pengirim</label>
                         <input type="text" class="form-control @error('pengirim') is-invalid @enderror"
                             name="pengirim" id="pengirim" placeholder="Pengirim"
-                            value="{{ $row->pengirim }}">
+                            value="{{ old('pengirim',$row->pengirim) }}">
                         @error('pengirim')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -73,15 +73,24 @@
                         <label for="tanggal_surat">Tanggal Surat</label>
                         <input type="date" class="form-control @error('tanggal_surat') is-invalid @enderror"
                             name="tanggal_surat" id="tanggal_surat" placeholder="dd/mm/yyyy"
-                            value="{{ $row->tanggal_surat }}">
+                            value="{{ old('tanggal_surat',$row->tanggal_surat) }}">
                         @error('tanggal_surat')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_terima">Tanggal Terima</label>
+                        <input type="date" class="form-control @error('tanggal_terima') is-invalid @enderror"
+                            name="tanggal_terima" id="tanggal_terima" placeholder="dd/mm/yyyy"
+                            value="{{ old('tanggal_terima',$row->tanggal_terima) }}">
+                        @error('tanggal_terima')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="file">File</label>
                         <input type="file" class="form-control @error('file') is-invalid @enderror" name="file"
-                            id="file" value="{{ $row->file }}">
+                            id="file" value="{{ old('file',$row->file) }}">
                         @error('file')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -102,8 +111,8 @@
             icon: 'error',
             title: 'Gagal!',
             text: 'Data gagal diubah.',
-            timer: 1000,
             showConfirmButton: false,
+            timer: 1000
         })
     </script>
 @endif

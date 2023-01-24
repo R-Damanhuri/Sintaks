@@ -30,3 +30,17 @@ Route::get('/suratmasuk/hapus/{id}', [App\Http\Controllers\SuratMasukController:
 Route::post('/suratmasuk/update/{id}', [App\Http\Controllers\SuratMasukController::class, 'update'])->name('suratmasuk.update');
 Route::get('/suratmasuk/exportexcel', [App\Http\Controllers\SuratMasukController::class, 'exportexcel'])->name('suratmasuk.exportexcel');
 Route::get('/suratmasuk/exportpdf', [App\Http\Controllers\SuratMasukController::class, 'exportpdf'])->name('suratmasuk.exportpdf');
+
+Route::get('/jenissurat', [App\Http\Controllers\JenisSuratController::class, 'index'])->name('jenissurat');
+Route::get('/jenissurat/formTambah', [App\Http\Controllers\JenisSuratController::class, 'formTambah'])->name('jenissurat.formTambah');
+Route::post('/jenissurat/tambah', [App\Http\Controllers\JenisSuratController::class, 'tambah'])->name('jenissurat.tambah');
+Route::get('/jenissurat/hapus/{id}', [App\Http\Controllers\JenisSuratController::class, 'hapus'])->name('jenissurat.hapus');
+Route::post('/jenissurat/update/{id}', [App\Http\Controllers\JenisSuratController::class, 'update'])->name('jenissurat.update');
+
+Route::get('/disposisi', [App\Http\Controllers\DisposisiController::class, 'index'])->name('disposisi');
+Route::get('/disposisi/formTambah', [App\Http\Controllers\DisposisiController::class, 'formTambah'])->name('disposisi.formTambah');
+Route::get('/disposisi/menuTambah/{id}', [App\Http\Controllers\DisposisiController::class, 'menuTambah'])->name('disposisi.menuTambah');
+Route::post('/disposisi/tambah', [App\Http\Controllers\DisposisiController::class, 'tambah'])->name('disposisi.tambah');
+Route::get('/disposisi/hapus/{id}', [App\Http\Controllers\DisposisiController::class, 'hapus'])->name('disposisi.hapus');
+Route::post('/disposisi/update/{id}', [App\Http\Controllers\DisposisiController::class, 'update'])->name('disposisi.update');
+Route::get('/disposisi/exportpdf/{id}', [App\Http\Controllers\DisposisiController::class, 'exportpdf'])->name('disposisi.exportpdf');

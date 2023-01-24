@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('disposisis', function (Blueprint $table) {
             $table->id();
-            $table->string('intruksi')->unique();
-            $table->string('catatan');
-            $table->date('tanggal_selesai');
-            $table->foreignId('user_id');
-            $table->foreignId('surat_id');
+            $table->string('intruksi');
+            $table->string('catatan')->nullable();
+            $table->string('kepada');
+            $table->foreignId('surat_masuk_id');    //FK
+            $table->timestamps();
         });
     }
 

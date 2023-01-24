@@ -107,6 +107,11 @@
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
+                    <li class="nav-item sidebar-actions">
+                        <div class="border-bottom">
+                            <h6 class="font-weight-normal mt-4 menu-title">Admin</h6>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">
                             <span class="menu-title">Dashboard</span>
@@ -114,6 +119,22 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="../../pages/charts/chartjs.html">
+                            <span class="menu-title">Data Pengguna</span>
+                            <i class="mdi mdi-account-multiple menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('jenissurat') }}">
+                            <span class="menu-title">Jenis Surat</span>
+                            <i class="mdi mdi-view-grid menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item sidebar-actions">
+                        <div class="border-bottom">
+                            <h6 class="font-weight-normal mt-4">Pengarsip</h6>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('suratmasuk') }}">
                             <span class="menu-title">Surat Masuk</span>
@@ -127,9 +148,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../pages/icons/mdi.html">
-                            <span class="menu-title">Jenis Surat</span>
-                            <i class="mdi mdi-view-grid menu-icon"></i>
+                        <a class="nav-link" href="{{ route('disposisi') }}">
+                            <span class="menu-title">Disposisi</span>
+                            <i class="mdi mdi mdi-send menu-icon"></i>
                         </a>
                     </li>
                     {{-- <li class="nav-item">
@@ -138,12 +159,7 @@
                             <i class="mdi mdi-pencil menu-icon"></i>
                         </a>
                     </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../pages/charts/chartjs.html">
-                            <span class="menu-title">Pengaturan</span>
-                            <i class="mdi mdi-settings menu-icon"></i>
-                        </a>
-                    </li>
+
                 </ul>
             </nav>
             <!-- partial -->
