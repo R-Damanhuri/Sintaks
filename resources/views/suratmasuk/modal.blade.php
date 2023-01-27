@@ -25,7 +25,7 @@
             </div>
             <div class="modal-body">
                 <form class="forms-sample" id="modal-form" method="post"
-                    action="/suratmasuk/update/{{ $row->id }}" enctype="multipart/form-data">
+                    action="/pengguna/update/{{ $row->id }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="no_surat">Nomor Surat</label>

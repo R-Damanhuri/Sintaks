@@ -107,6 +107,8 @@
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
+                    @if (auth()->user()->role_id==1)
+                        
                     <li class="nav-item sidebar-actions">
                         <div class="border-bottom">
                             <h6 class="font-weight-normal mt-4 menu-title">Admin</h6>
@@ -119,7 +121,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../pages/charts/chartjs.html">
+                        <a class="nav-link" href="{{ route('pengguna') }}">
                             <span class="menu-title">Data Pengguna</span>
                             <i class="mdi mdi-account-multiple menu-icon"></i>
                         </a>
@@ -130,6 +132,8 @@
                             <i class="mdi mdi-view-grid menu-icon"></i>
                         </a>
                     </li>
+                    @endif
+                    
                     <li class="nav-item sidebar-actions">
                         <div class="border-bottom">
                             <h6 class="font-weight-normal mt-4">Pengarsip</h6>

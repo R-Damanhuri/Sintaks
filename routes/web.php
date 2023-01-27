@@ -20,27 +20,44 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Admin
+Route::middleware(['auth', 'ceklevel:1'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/suratmasuk', [App\Http\Controllers\SuratMasukController::class, 'index'])->name('suratmasuk');
-Route::get('/suratmasuk/formTambah', [App\Http\Controllers\SuratMasukController::class, 'formTambah'])->name('suratmasuk.formTambah');
-Route::post('/suratmasuk/tambah', [App\Http\Controllers\SuratMasukController::class, 'tambah'])->name('suratmasuk.tambah');
-Route::get('/suratmasuk/hapus/{id}', [App\Http\Controllers\SuratMasukController::class, 'hapus'])->name('suratmasuk.hapus');
-Route::post('/suratmasuk/update/{id}', [App\Http\Controllers\SuratMasukController::class, 'update'])->name('suratmasuk.update');
-Route::get('/suratmasuk/exportexcel', [App\Http\Controllers\SuratMasukController::class, 'exportexcel'])->name('suratmasuk.exportexcel');
-Route::get('/suratmasuk/exportpdf', [App\Http\Controllers\SuratMasukController::class, 'exportpdf'])->name('suratmasuk.exportpdf');
+    Route::get('/jenissurat', [App\Http\Controllers\JenisSuratController::class, 'index'])->name('jenissurat');
+    Route::get('/jenissurat/formTambah', [App\Http\Controllers\JenisSuratController::class, 'formTambah'])->name('jenissurat.formTambah');
+    Route::post('/jenissurat/tambah', [App\Http\Controllers\JenisSuratController::class, 'tambah'])->name('jenissurat.tambah');
+    Route::get('/jenissurat/hapus/{id}', [App\Http\Controllers\JenisSuratController::class, 'hapus'])->name('jenissurat.hapus');
+    Route::post('/jenissurat/update/{id}', [App\Http\Controllers\JenisSuratController::class, 'update'])->name('jenissurat.update');
+        
+    Route::get('/pengguna', [App\Http\Controllers\PenggunaController::class, 'index'])->name('pengguna');
+    Route::get('/pengguna/formTambah', [App\Http\Controllers\PenggunaController::class, 'formTambah'])->name('pengguna.formTambah');
+    Route::post('/pengguna/tambah', [App\Http\Controllers\PenggunaController::class, 'tambah'])->name('pengguna.tambah');
+    Route::get('/pengguna/hapus/{id}', [App\Http\Controllers\PenggunaController::class, 'hapus'])->name('pengguna.hapus');
+    Route::post('/pengguna/update/{id}', [App\Http\Controllers\PenggunaController::class, 'update'])->name('pengguna.update');
+     
+});
 
-Route::get('/jenissurat', [App\Http\Controllers\JenisSuratController::class, 'index'])->name('jenissurat');
-Route::get('/jenissurat/formTambah', [App\Http\Controllers\JenisSuratController::class, 'formTambah'])->name('jenissurat.formTambah');
-Route::post('/jenissurat/tambah', [App\Http\Controllers\JenisSuratController::class, 'tambah'])->name('jenissurat.tambah');
-Route::get('/jenissurat/hapus/{id}', [App\Http\Controllers\JenisSuratController::class, 'hapus'])->name('jenissurat.hapus');
-Route::post('/jenissurat/update/{id}', [App\Http\Controllers\JenisSuratController::class, 'update'])->name('jenissurat.update');
+//Pengarsip
+Route::middleware(['auth', 'ceklevel:2'])->group(function () {
+    Route::get('/pengarsiphome', [App\Http\Controllers\PengarsipController::class, 'index'])->name('pengarsiphome');
+});
 
-Route::get('/disposisi', [App\Http\Controllers\DisposisiController::class, 'index'])->name('disposisi');
-Route::get('/disposisi/formTambah', [App\Http\Controllers\DisposisiController::class, 'formTambah'])->name('disposisi.formTambah');
-Route::get('/disposisi/menuTambah/{id}', [App\Http\Controllers\DisposisiController::class, 'menuTambah'])->name('disposisi.menuTambah');
-Route::post('/disposisi/tambah', [App\Http\Controllers\DisposisiController::class, 'tambah'])->name('disposisi.tambah');
-Route::get('/disposisi/hapus/{id}', [App\Http\Controllers\DisposisiController::class, 'hapus'])->name('disposisi.hapus');
-Route::post('/disposisi/update/{id}', [App\Http\Controllers\DisposisiController::class, 'update'])->name('disposisi.update');
-Route::get('/disposisi/exportpdf/{id}', [App\Http\Controllers\DisposisiController::class, 'exportpdf'])->name('disposisi.exportpdf');
+//Admin dan Pengarsip
+Route::middleware(['auth', 'ceklevel:1,2'])->group(function () {
+    Route::get('/suratmasuk', [App\Http\Controllers\SuratMasukController::class, 'index'])->name('suratmasuk');
+    Route::get('/suratmasuk/formTambah', [App\Http\Controllers\SuratMasukController::class, 'formTambah'])->name('suratmasuk.formTambah');
+    Route::post('/suratmasuk/tambah', [App\Http\Controllers\SuratMasukController::class, 'tambah'])->name('suratmasuk.tambah');
+    Route::get('/suratmasuk/hapus/{id}', [App\Http\Controllers\SuratMasukController::class, 'hapus'])->name('suratmasuk.hapus');
+    Route::post('/suratmasuk/update/{id}', [App\Http\Controllers\SuratMasukController::class, 'update'])->name('suratmasuk.update');
+    Route::get('/suratmasuk/exportexcel', [App\Http\Controllers\SuratMasukController::class, 'exportexcel'])->name('suratmasuk.exportexcel');
+    Route::get('/suratmasuk/exportpdf', [App\Http\Controllers\SuratMasukController::class, 'exportpdf'])->name('suratmasuk.exportpdf');
+    
+    Route::get('/disposisi', [App\Http\Controllers\DisposisiController::class, 'index'])->name('disposisi');
+    Route::get('/disposisi/formTambah', [App\Http\Controllers\DisposisiController::class, 'formTambah'])->name('disposisi.formTambah');
+    Route::get('/disposisi/menuTambah/{id}', [App\Http\Controllers\DisposisiController::class, 'menuTambah'])->name('disposisi.menuTambah');
+    Route::post('/disposisi/tambah', [App\Http\Controllers\DisposisiController::class, 'tambah'])->name('disposisi.tambah');
+    Route::get('/disposisi/hapus/{id}', [App\Http\Controllers\DisposisiController::class, 'hapus'])->name('disposisi.hapus');
+    Route::post('/disposisi/update/{id}', [App\Http\Controllers\DisposisiController::class, 'update'])->name('disposisi.update');
+    Route::get('/disposisi/exportpdf/{id}', [App\Http\Controllers\DisposisiController::class, 'exportpdf'])->name('disposisi.exportpdf'); 
+});

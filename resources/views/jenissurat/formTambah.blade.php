@@ -54,7 +54,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                        <button type="submit" class="btn btn-gradient-primary me-2">Tambah</button>
                         <a href="{{ route('jenissurat') }}" class="btn btn-danger">Batal</a>
                     </form>
                 </div>

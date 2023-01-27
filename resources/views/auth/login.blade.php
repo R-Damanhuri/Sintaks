@@ -22,7 +22,7 @@
                                 <div class="form-group">
                                     <input type="email"
                                         class="form-control @error('email') is-invalid @enderror form-control-lg"
-                                        placeholder="Username" id="email" name="email" value="{{ old('email') }}"
+                                        placeholder="E-mail" id="email" name="email" value="{{ old('email') }}"
                                         required autocomplete="email" autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">

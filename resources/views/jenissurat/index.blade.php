@@ -104,7 +104,7 @@
                     window.location = "/jenissurat/hapus/" + id + ""
                     Swal.fire({
                         title: 'Berhasil!',
-                        text: 'Surat masuk berhasil dihapus.',
+                        text: 'Jenis surat berhasil dihapus.',
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 1000

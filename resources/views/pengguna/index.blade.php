@@ -1,21 +1,21 @@
 @extends('layouts.app')
 
 @section('title')
-    Sintaks | Disposisi
+    Sintaks | Data Pengguna
 @endsection
 
 @section('content')
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
-                <i class="mdi mdi-send"></i>
-            </span> Disposisi
+                <i class="mdi mdi-account-multiple"></i>
+            </span> Data Pengguna
         </h3>
         <div class="text-end">
 
-            <button onclick="location.href='{{ route('disposisi.formTambah') }}'"
+            <button onclick="location.href='{{ route('pengguna.formTambah') }}'"
                 class="btn-sm btn-gradient-primary ms-1 my-1 rounded-3"><i class="mdi mdi-plus icon-sm"></i> Tambah
-                Disposisi</button>
+                Pengguna</button>
         </div>
     </div>
     <div class="row">
@@ -26,10 +26,9 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Intruksi</th>
-                                <th>Daftar Penerima</th>
-                                <th>Nomor Surat</th>
-                                <th>Catatan</th>
+                                <th>Username</th>
+                                <th>E-mail</th>
+                                <th>Role</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -37,24 +36,24 @@
                             @foreach ($data as $row)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $row->intruksi }}</td>
-                                    <td>{{ $row->kepada }}</td>
-                                    <td>{{ $row->surat_masuk->no_surat }}</td>
-                                    <td>{{ $row->catatan }}</td>
+                                    <td>{{ $row->name }}</td>
+                                    <td>{{ $row->email }}</td>
+                                    <td>{{ $row->role->name }}</td>
                                     <td>
-                                        <a title="Cetak" href="/disposisi/exportpdf/{{$row->id}}" class="btn-sm btn-info edit ms-1"><i
-                                                class="mdi mdi-printer"></i></a>
-                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1" data-bs-toggle="modal"
-                                            data-bs-target="#editModal{{ $row->id }}"><i
+                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1"
+                                            data-bs-toggle="modal" data-bs-target="#editModal{{ $row->id }}"><i
                                                 class="mdi mdi-pencil"></i></a>
-                                        <a title="Hapus" href="#" class="btn-sm btn-danger delete ms-1"
-                                            data-id="{{ $row->id }}" data-nomor="{{ $row->surat_masuk->no_surat }}"><i
-                                                class="mdi mdi-delete"></i></a>
+
+                                        @if ($row->role_id == 2)
+                                            <a title="Hapus" href="#" class="btn-sm btn-danger delete ms-1"
+                                                data-username="{{ $row->name }} " data-id="{{ $row->id }}"><i
+                                                    class="mdi mdi-delete"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
 
                                 {{-- Include Modal --}}
-                                @include('disposisi.modal')
+                                @include('pengguna.modal')
                             @endforeach
                         </tbody>
                     </table>
@@ -92,11 +91,11 @@
     {{-- SweetAlert Hapus --}}
     <script>
         $('.delete').click(function() {
+            var username = $(this).attr('data-username');
             var id = $(this).attr('data-id');
-            var nomor = $(this).attr('data-nomor');
             Swal.fire({
                 title: 'Apakah Anda yakin?',
-                text: "Disposisi untuk surat bernomor " + nomor + " akan dihapus.",
+                text: "Pengguna dengan username " + username + " akan dihapus.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -105,10 +104,10 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location = "/disposisi/hapus/" + id + ""
+                    window.location = "/pengguna/hapus/" + id + ""
                     Swal.fire({
                         title: 'Berhasil!',
-                        text: 'Disposisi berhasil dihapus.',
+                        text: 'Data pengguna berhasil dihapus.',
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 1000
