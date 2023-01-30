@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-form-label"for="id">Kode Jenis Surat</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control @error('id') is-invalid @enderror"
+                                <input required type="number" class="form-control @error('id') is-invalid @enderror"
                                     name="id" id="id" placeholder="Kode Surat" value="{{ old('id') }}">
                                 @error('id')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -34,9 +34,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-3 col-form-label"for="nama_jenis">Jenis Surat</label>
+                            <label class="col-sm-3 col-form-label"for="nama_jenis">Nama Jenis Surat</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('nama_jenis') is-invalid @enderror"
+                                <input required type="text" class="form-control @error('nama_jenis') is-invalid @enderror"
                                     name="nama_jenis" id="nama_jenis" placeholder="Jenis Surat" value="{{ old('nama_jenis') }}">
                                 @error('nama_jenis')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-form-label"for="keterangan">Keterangan</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('keterangan') is-invalid @enderror"
+                                <input required type="text" class="form-control @error('keterangan') is-invalid @enderror"
                                     name="keterangan" id="keterangan" placeholder="keterangan" value="{{ old('keterangan') }}">
                                 @error('keterangan')
                                     <div class="invalid-feedback">{{ $message }}</div>

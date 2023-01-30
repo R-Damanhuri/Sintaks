@@ -53,6 +53,14 @@ Route::middleware(['auth', 'ceklevel:1,2'])->group(function () {
     Route::get('/suratmasuk/exportexcel', [App\Http\Controllers\SuratMasukController::class, 'exportexcel'])->name('suratmasuk.exportexcel');
     Route::get('/suratmasuk/exportpdf', [App\Http\Controllers\SuratMasukController::class, 'exportpdf'])->name('suratmasuk.exportpdf');
     
+    Route::get('/suratkeluar', [App\Http\Controllers\SuratKeluarController::class, 'index'])->name('suratkeluar');
+    Route::get('/suratkeluar/formTambah', [App\Http\Controllers\SuratKeluarController::class, 'formTambah'])->name('suratkeluar.formTambah');
+    Route::post('/suratkeluar/tambah', [App\Http\Controllers\SuratKeluarController::class, 'tambah'])->name('suratkeluar.tambah');
+    Route::get('/suratkeluar/hapus/{id}', [App\Http\Controllers\SuratKeluarController::class, 'hapus'])->name('suratkeluar.hapus');
+    Route::post('/suratkeluar/update/{id}', [App\Http\Controllers\SuratKeluarController::class, 'update'])->name('suratkeluar.update');
+    Route::get('/suratkeluar/exportexcel', [App\Http\Controllers\SuratKeluarController::class, 'exportexcel'])->name('suratkeluar.exportexcel');
+    Route::get('/suratkeluar/exportpdf', [App\Http\Controllers\SuratKeluarController::class, 'exportpdf'])->name('suratkeluar.exportpdf');
+
     Route::get('/disposisi', [App\Http\Controllers\DisposisiController::class, 'index'])->name('disposisi');
     Route::get('/disposisi/formTambah', [App\Http\Controllers\DisposisiController::class, 'formTambah'])->name('disposisi.formTambah');
     Route::get('/disposisi/menuTambah/{id}', [App\Http\Controllers\DisposisiController::class, 'menuTambah'])->name('disposisi.menuTambah');

@@ -9,10 +9,12 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-account-multiple"></i>
-            </span> Data Pengguna
+            </span>
+            <span class="page-title-text">
+                Data Pengguna
+            </span>
         </h3>
         <div class="text-end">
-
             <button onclick="location.href='{{ route('pengguna.formTambah') }}'"
                 class="btn-sm btn-gradient-primary ms-1 my-1 rounded-3"><i class="mdi mdi-plus icon-sm"></i> Tambah
                 Pengguna</button>

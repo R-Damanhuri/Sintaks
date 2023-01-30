@@ -3,41 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SuratMasuk;
+use App\Models\SuratKeluar;
 use App\Models\JenisSurat;
 use File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SuratMasukExport;
+use App\Exports\SuratKeluarExport;
 use PDF;
 
-
-class SuratMasukController extends Controller
+class SuratKeluarController extends Controller
 {
     public function index()
     {
-        $data = SuratMasuk::all();
+        $data = SuratKeluar::all();
         $jenis = JenisSurat::all();
-        return view('suratmasuk.index', compact('data', 'jenis'));
+        return view('suratkeluar.index', compact('data', 'jenis'));
         // view(folder.file, ...)
     }
 
     public function formTambah()
     {
         $jenis = JenisSurat::all();
-        return view('suratmasuk.formTambah', compact('jenis'));
+        return view('suratkeluar.formTambah', compact('jenis'));
     }
 
     public function tambah(Request $request)
     {
         $rules = [
-            'no_surat' => 'required|unique:surat_masuks,no_surat',
+            'no_surat' => 'required|unique:surat_keluars,no_surat',
             'jenis_surat_id' => 'required',
             'perihal' => 'required',
-            'pengirim' => 'required',
+            'penerima' => 'required',
             'tanggal_surat' => 'required|before_or_equal:' . date(DATE_ATOM),
-            'tanggal_terima' => 'required|before_or_equal:' . date(DATE_ATOM),
             'file' => 'required|mimes:pdf',
         ];
 
@@ -45,14 +44,12 @@ class SuratMasukController extends Controller
             'no_surat.required' => 'Nomor surat harus diisi.',
             'jenis_surat_id.required' => 'Jenis surat harus diisi.',
             'perihal.required' => 'Perihal harus diisi.',
-            'pengirim.required' => 'Pengirim harus diisi.',
+            'penerima.required' => 'Penerima harus diisi.',
             'tanggal_surat.required' => 'Tanggal surat harus diisi.',
-            'tanggal_terima.required' => 'Tanggal terima harus diisi.',
             'file.required' => 'File harus diisi.',
 
             'no_surat.unique' => 'Nomor surat sudah ada.',
             'tanggal_surat.before_or_equal' => 'Tanggal surat tidak boleh lebih dari tanggal sekarang.',
-            'tanggal_terima.before_or_equal' => 'Tanggal terima tidak boleh lebih dari tanggal sekarang.',
             'file.mimes' => 'Format file yang diterima hanya PDF.',
         ];
 
@@ -65,30 +62,29 @@ class SuratMasukController extends Controller
                 ->withErrors($validasi);
         } else {
             
-            $data = SuratMasuk::create($request->all());
+            $data = SuratKeluar::create($request->all());
             if ($request->hasFile('file')) {
-                $request->file('file')->move('FileSuratMasuk/', $request->file('file')->getClientOriginalName());
+                $request->file('file')->move('FileSuratKeluar/', $request->file('file')->getClientOriginalName());
                 $data->file = $request->file('file')->getClientOriginalName();
                 $data->save();
             }
 
             return redirect()
-                ->route('suratmasuk')
+                ->route('suratkeluar')
                 ->with('add_success', 'Data Berhasil Ditambahkan.');
         }
     }
 
     public function hapus($id)
     {
-        $data = SuratMasuk::find($id);
-        $data->disposisi()->delete();
+        $data = SuratKeluar::find($id);
 
-        if (File::exists(public_path('FileSuratMasuk/' . $data->file))) {
-            File::delete(public_path('FileSuratMasuk/' . $data->file));
+        if (File::exists(public_path('FileSuratKeluar/' . $data->file))) {
+            File::delete(public_path('FileSuratKeluar/' . $data->file));
         }
         $data->delete();
         return redirect()
-            ->route('suratmasuk')
+            ->route('suratkeluar')
             ->with('delete_success', 'Data Berhasil Dihapus.');
     }
 
@@ -96,13 +92,12 @@ class SuratMasukController extends Controller
     {
 
         $rules = [
-            'no_surat' => Rule::unique('surat_masuks')->ignore($request->no_surat),
+            'no_surat' => Rule::unique('surat_keluars')->ignore($request->no_surat),
             'no_surat' => 'required',
             'jenis_surat_id' => 'required',
             'perihal' => 'required',
-            'pengirim' => 'required',
+            'penerima' => 'required',
             'tanggal_surat' => 'required|before_or_equal:' . date(DATE_ATOM),
-            'tanggal_terima' => 'required|before_or_equal:' . date(DATE_ATOM),
             'file' => 'mimes:pdf',
         ];
 
@@ -110,13 +105,11 @@ class SuratMasukController extends Controller
             'no_surat.required' => 'Nomor surat harus diisi.',
             'jenis_surat_id.required' => 'Jenis surat harus diisi.',
             'perihal.required' => 'Perihal harus diisi.',
-            'pengirim.required' => 'Pengirim harus diisi.',
+            'penerima.required' => 'Penerima harus diisi.',
             'tanggal_surat.required' => 'Tanggal surat harus diisi.',
-            'tanggal_terima.required' => 'Tanggal terima harus diisi.',
 
             'no_surat.unique' => 'Nomor surat sudah ada.',
             'tanggal_surat.before_or_equal' => 'Tanggal surat tidak boleh lebih dari tanggal sekarang.',
-            'tanggal_terima.before_or_equal' => 'Tanggal terima tidak boleh lebih dari tanggal sekarang.',
             'file.mimes' => 'Format file yang diterima hanya PDF.',
         ];
         
@@ -124,39 +117,39 @@ class SuratMasukController extends Controller
 
         if ($validasi->fails()) {
             return redirect()
-                ->route('suratmasuk')
+                ->route('suratkeluar')
                 ->with('update_fails', 'Data Gagal Diubah.')
                 ->withInput($request->except('key'))
                 ->withErrors($validasi);
         } else {
 
-            $data = SuratMasuk::find($id);
+            $data = SuratKeluar::find($id);
             $data->update($request->all());
             if ($request->hasFile('file')) {
-                File::delete(public_path('FileSuratMasuk/' . $data->file));
+                File::delete(public_path('FileSuratKeluar/' . $data->file));
 
-                $request->file('file')->move('FileSuratMasuk/', $request->file('file')->getClientOriginalName());
+                $request->file('file')->move('FileSuratKeluar/', $request->file('file')->getClientOriginalName());
                 $data->file = $request->file('file')->getClientOriginalName();
                 $data->save();
             }
 
             return redirect()
-                ->route('suratmasuk')
+                ->route('suratkeluar')
                 ->with('update_success', 'Data Berhasil Diubah.');
         }
     }
 
     public function exportexcel()
     {
-        return Excel::download(new SuratMasukExport, 'laporan-surat-masuk.xlsx', null, $headers = ['no_surat', 'jenis_surat_id', 'perihal','pengirim','tanggal_surat', 'tanggal_terima']);
+        return Excel::download(new SuratKeluarExport, 'laporan-surat-keluar.xlsx', null, $headers = ['no_surat', 'jenis_surat_id', 'perihal','penerima','tanggal_surat']);
     }
 
     public function exportpdf()
     {
-        $data = SuratMasuk::all();
+        $data = SuratKeluar::all();
         view()->share('data', $data);
-        $pdf = PDF::loadview('suratmasuk.templatPDF');
+        $pdf = PDF::loadview('suratkeluar.templatPDF');
 
-        return $pdf->download('laporan-surat-masuk.pdf');
+        return $pdf->download('laporan-surat-keluar.pdf');
     }
 }

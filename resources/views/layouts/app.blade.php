@@ -114,19 +114,19 @@
                             <h6 class="font-weight-normal mt-4 menu-title">Admin</h6>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ (request()->is('home')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('home') }}">
                             <span class="menu-title">Dashboard</span>
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ (request()->is('pengguna*')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('pengguna') }}">
                             <span class="menu-title">Data Pengguna</span>
                             <i class="mdi mdi-account-multiple menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ (request()->is('jenissurat*')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('jenissurat') }}">
                             <span class="menu-title">Jenis Surat</span>
                             <i class="mdi mdi-view-grid menu-icon"></i>
@@ -139,19 +139,19 @@
                             <h6 class="font-weight-normal mt-4">Pengarsip</h6>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ (request()->is('suratmasuk*')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('suratmasuk') }}">
                             <span class="menu-title">Surat Masuk</span>
                             <i class="mdi mdi-email-open menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../pages/icons/mdi.html">
+                    <li class="nav-item {{ (request()->is('suratkeluar*')) ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('suratkeluar') }}">
                             <span class="menu-title">Surat Keluar</span>
                             <i class="mdi mdi-email menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ (request()->is('disposisi*')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('disposisi') }}">
                             <span class="menu-title">Disposisi</span>
                             <i class="mdi mdi mdi-send menu-icon"></i>
@@ -187,8 +187,10 @@
     <!-- container-scroller -->
 
     <!-- plugins:js -->
-    @vite(['public/assets/vendors/js/vendor.bundle.base.js', 'public/assets/js/off-canvas.js', 'public/assets/js/hoverable-collapse.js', 'public/assets/js/misc.js', 'public/assets/vendors/chart.js/Chart.min.js', 'public/assets/js/dashboard.js'])
+    @vite(['public/assets/vendors/js/vendor.bundle.base.js', 'public/assets/js/off-canvas.js', 'public/assets/js/hoverable-collapse.js', 'public/assets/vendors/chart.js/Chart.min.js', 'public/assets/js/dashboard.js'])
 
+    {{-- Ini dihapus karena menyebabkan nav-item active semua saat klik disposisikan:   'public/assets/js/misc.js' --}}
+    
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script>

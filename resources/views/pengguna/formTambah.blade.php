@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-form-label"for="name">Nama</label>
                             <div class="col-sm-9">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input required id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-form-label"for="email">E-mail</label>
                             <div class="col-sm-9">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input required id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -43,14 +43,16 @@
                         </div>
                         <div class="form-group">
                             <label for="role_id">Role</label>
-                            <select class="form-control mt-2 @error('role_id') is-invalid @enderror"
+                            <select required class="form-control mt-2 @error('role_id') is-invalid @enderror"
                                 name="role_id" id="role_id">
                                 <option value="">--- Pilih ---</option>
                                 @foreach ($roles as $item)
+                                    @if ($item->id != 1)
                                     <option value="{{ $item->id }}"
                                         @if (old('role_id') == $item->id) {{ 'selected' }} @endif>
                                         {{ $item->name }}
                                     </option>
+                                    @endif
                                 @endforeach
                             </select>
                             @error('role_id')
@@ -60,7 +62,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-form-label"for="password">Password</label>
                             <div class="col-sm-9">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input required id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 @error('password')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -69,7 +71,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-form-label"for="confirm_password">Konfirmasi Password</label>
                             <div class="col-sm-9">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input required id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 

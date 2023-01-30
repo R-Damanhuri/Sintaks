@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Sintaks | Surat Masuk
+    Sintaks | Surat Keluar
 @endsection
 
 @section('content')
@@ -11,18 +11,18 @@
                 <i class="mdi mdi-email-open"></i>
             </span>
             <span class="page-title-text">
-                Surat Masuk
+                Surat Keluar
             </span>
         </h3>
         <div class="text-end">
 
-            <button onclick="location.href='{{ route('suratmasuk.formTambah') }}'"
+            <button onclick="location.href='{{ route('suratkeluar.formTambah') }}'"
                 class="btn-sm btn-gradient-primary ms-1 my-1 rounded-3"><i class="mdi mdi-plus icon-sm"></i> Tambah
                 Surat</button>
-            <button onclick="location.href = '{{ route('suratmasuk.exportpdf') }}' "
+            <button onclick="location.href = '{{ route('suratkeluar.exportpdf') }}' "
                 class="btn-sm btn-gradient-danger ms-1 my-1 rounded-3"><i class="mdi mdi-file-pdf icon-sm"></i>
                 PDF</button>
-            <button onclick="location.href = '{{ route('suratmasuk.exportexcel') }}' "
+            <button onclick="location.href = '{{ route('suratkeluar.exportexcel') }}' "
                 class="btn-sm btn-gradient-success ms-1 my-1 rounded-3"><i class="mdi mdi-file-excel icon-sm"></i>
                 Excel</button>
         </div>
@@ -38,9 +38,8 @@
                                 <th>No. Surat</th>
                                 <th>Jenis Surat</th>
                                 <th>Perihal</th>
-                                <th>Pengirim</th>
+                                <th>Penerima</th>
                                 <th>Tanggal Surat</th>
-                                <th>Tanggal Terima</th>
                                 {{-- <th>Terakhir Diubah</th> --}}
                                 <th>File</th>
                                 <th>Aksi</th>
@@ -53,17 +52,14 @@
                                     <td>{{ $row->no_surat }}</td>
                                     <td>{{ $row->jenis_surat->nama_jenis }}</td>
                                     <td>{{ $row->perihal }}</td>
-                                    <td>{{ $row->pengirim }}</td>
+                                    <td>{{ $row->penerima }}</td>
                                     <td>{{ date('d-m-Y', strtotime($row->tanggal_surat)) }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($row->tanggal_terima)) }}</td>
                                     {{-- <td>{{ $row->updated_at->diffForHumans() }}</td> --}}
                                     <td>
                                         <a title="Lihat Berkas" href="" class="btn-sm btn-info " id="pdf" data-bs-toggle="modal"
                                             data-bs-target="#pdfModal{{ $row->id }}"><i class="mdi mdi-file"></i></a>
                                     </td>
                                     <td>
-                                        <a title="Disposisikan" href="/disposisi/menuTambah/{{ $row->id }}" class="btn-sm btn-success ms-1"><i
-                                                data-id = "{{ $row->id }}" class="mdi mdi-send"></i></a>
                                         <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1" data-bs-toggle="modal"
                                             data-bs-target="#editModal{{ $row->id }}"><i
                                                 class="mdi mdi-pencil"></i></a>
@@ -74,7 +70,7 @@
                                 </tr>
 
                                 {{-- Include Modal --}}
-                                @include('suratmasuk.modal')
+                                @include('suratkeluar.modal')
                             @endforeach
                         </tbody>
                     </table>
@@ -116,7 +112,7 @@
             var id = $(this).attr('data-id');
             Swal.fire({
                 title: 'Apakah Anda yakin?',
-                text: "Surat masuk dengan nomor " + nomor + " akan dihapus.",
+                text: "Surat keluar dengan nomor " + nomor + " akan dihapus.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -125,10 +121,10 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location = "/suratmasuk/hapus/" + id + ""
+                    window.location = "/suratkeluar/hapus/" + id + ""
                     Swal.fire({
                         title: 'Berhasil!',
-                        text: 'Surat masuk berhasil dihapus.',
+                        text: 'Surat keluar berhasil dihapus.',
                         icon: 'success',
                         showConfirmButton: false,
                         timer: 1000

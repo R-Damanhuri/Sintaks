@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Sintaks | Surat Masuk
+    Sintaks | Surat Keluar
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-email-open"></i>
-            </span> Surat Masuk
+            </span> Surat Keluar
         </h3>
     </div>
     <div class="row">
@@ -19,7 +19,7 @@
                     <h4 class="card-title">Tambah Surat</h4>
                     <p class="card-description"> Isikan dengan data yang benar </p>
 
-                    <form class="forms-sample" method="post" action="/suratmasuk/tambah" enctype="multipart/form-data">
+                    <form class="forms-sample" method="post" action="/suratkeluar/tambah" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -37,12 +37,12 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label"for="pengirim">Pengirim</label>
+                                    <label class="col-sm-3 col-form-label"for="penerima">Penerima</label>
                                     <div class="col-sm-9">
-                                        <input required type="text" class="form-control @error('pengirim') is-invalid @enderror"
-                                            name="pengirim" id="pengirim" placeholder="Pengirim"
-                                            value="{{ old('pengirim') }}">
-                                        @error('pengirim')
+                                        <input required type="text" class="form-control @error('penerima') is-invalid @enderror"
+                                            name="penerima" id="penerima" placeholder="Penerima"
+                                            value="{{ old('penerima') }}">
+                                        @error('penerima')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -106,23 +106,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label"for="tanggal_terima">Tanggal Terima</label>
-                                    <div class="col-sm-9">
-                                        <input required type="date"
-                                            class="form-control @error('tanggal_terima') is-invalid @enderror"
-                                            name="tanggal_terima" id="tanggal_terima" placeholder="dd/mm/yyyy"
-                                            value="{{ old('tanggal_terima') }}">
-                                        @error('tanggal_terima')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
                                     <label class="col-sm-3 col-form-label"for="file">File</label>
                                     <div class="col-sm-9">
                                         <input required type="file" class="form-control @error('file') is-invalid @enderror"
@@ -133,15 +116,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-
-                                </div>
-                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-gradient-primary me-2">Tambah</button>
-                        <a href="{{ route('suratmasuk') }}" class="btn btn-danger">Batal</a>
+                        <a href="{{ route('suratkeluar') }}" class="btn btn-danger">Batal</a>
                     </form>
                 </div>
             </div>

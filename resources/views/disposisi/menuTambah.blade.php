@@ -27,7 +27,7 @@
                                 name="surat_masuk_id" id="surat_masuk_id">
                                 <option value="">--- Pilih ---</option>
                                 <option value="{{ $surat->id }}"
-                                    @if (old('surat_masuk_id', $surat->id ) == $surat->id) {{ 'selected' }} @endif>
+                                    @if (old('surat_masuk_id', $surat->id) == $surat->id) {{ 'selected' }} @endif>
                                     {{ $surat->no_surat }}
                                 </option>
                             </select>

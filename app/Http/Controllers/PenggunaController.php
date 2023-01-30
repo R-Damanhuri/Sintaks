@@ -65,14 +65,12 @@ class PenggunaController extends Controller
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255']
         ];
 
         $message = [
             'name.required' => 'Nama harus diisi.',
-            'email.required' => 'E-mail harus diisi.',
-            'password.required' => 'Password harus diisi.'
+            'email.required' => 'E-mail harus diisi.'
         ];
 
         $validasi = Validator::make($request->all(), $rules, $message);
@@ -85,11 +83,7 @@ class PenggunaController extends Controller
         } else {
             
             $data = User::find($id);
-            $data->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'role_id' => $request->role_id
-            ]);
+            $data->update($request->all());
             return redirect()
                 ->route('pengguna')
                 ->with('add_success', 'Data Berhasil Ditambahkan.');

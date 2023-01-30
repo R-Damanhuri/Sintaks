@@ -89,7 +89,7 @@
     <hr class="solid-1">
 
     <br>
-    <h3>Laporan Surat Masuk</h3>
+    <h3>Laporan Surat Keluar</h3>
     <br>
 
     <table id="myTable">
@@ -99,9 +99,8 @@
                 <th>No. Surat</th>
                 <th>Jenis Surat</th>
                 <th>Perihal</th>
-                <th>Pengirim</th>
+                <th>Penerima</th>
                 <th>Tanggal Surat</th>
-                <th>Tanggal Terima</th>
             </tr>
         </thead>
         <tbody>
@@ -111,9 +110,8 @@
                     <td>{{ $row->no_surat }}</td>
                     <td>{{ $row->jenis_surat->nama_jenis }}</td>
                     <td>{{ $row->perihal }}</td>
-                    <td>{{ $row->pengirim }}</td>
+                    <td>{{ $row->penerima }}</td>
                     <td>{{ date('d-m-Y', strtotime($row->tanggal_surat)) }}</td>
-                    <td>{{ date('d-m-Y', strtotime($row->tanggal_terima)) }}</td>
                 </tr>
             @endforeach
         </tbody>

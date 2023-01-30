@@ -11300,6 +11300,9 @@ code {
     .page-title .page-title-icon i {
       font-size: .9375rem;
       line-height: 36px; }
+      @media (max-width: 550px) {
+        .page-title-text {
+          display: none;} }
 
 /* Footer */
 .footer {

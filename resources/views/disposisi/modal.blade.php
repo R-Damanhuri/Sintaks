@@ -14,7 +14,7 @@
 
                     <div class="form-group">
                         <label for="surat_masuk_id">Nomor Surat Masuk</label>
-                        <select readonly class="form-control mt-2 @error('surat_masuk_id') is-invalid @enderror"
+                        <select required readonly class="form-control mt-2 @error('surat_masuk_id') is-invalid @enderror"
                             name="surat_masuk_id" id="surat_masuk_id">
                             <option value="">--- Pilih ---</option>
                             <option value="{{ $row->surat_masuk->id }}" selected>
@@ -26,9 +26,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-form-label"for="id">Intruksi</label>
-                        <div class="col-sm-9">
-                            <select class="form-control mt-2 @error('intruksi') is-invalid @enderror" name="intruksi"
+                        <label class="col-sm-12 col-form-label"for="id">Intruksi</label>
+                        <div class="col-sm-12">
+                            <select required class="form-control mt-2 @error('intruksi') is-invalid @enderror" name="intruksi"
                                 id="intruksi">
                                 <option value="">--- Pilih ---</option>
                                 <option value="Untuk diketahui"
@@ -80,8 +80,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-form-label"for="catatan">Catatan</label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-12 col-form-label"for="catatan">Catatan</label>
+                        <div class="col-sm-12">
                             <input type="text" class="form-control @error('catatan') is-invalid @enderror"
                                 name="catatan" id="catatan" placeholder="Catatan (opsional)"
                                 value="{{ $row->catatan }}">
@@ -91,9 +91,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-form-label"for="kepada">Kepada</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control @error('kepada') is-invalid @enderror"
+                        <label class="col-sm-12 col-form-label"for="kepada">Daftar Penerima</label>
+                        <div class="col-sm-12">
+                            <input required type="text" class="form-control @error('kepada') is-invalid @enderror"
                                 name="kepada" id="kepada" placeholder="Kepada" value="{{ $row->kepada }}">
                             @error('kepada')
                                 <div class="invalid-feedback">{{ $message }}</div>

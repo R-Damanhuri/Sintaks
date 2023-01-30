@@ -24,7 +24,7 @@
 
                         <div class="form-group">
                             <label for="surat_masuk_id">Nomor Surat Masuk</label>
-                            <select class="form-control mt-2 @error('surat_masuk_id') is-invalid @enderror"
+                            <select required class="form-control mt-2 @error('surat_masuk_id') is-invalid @enderror"
                                 name="surat_masuk_id" id="surat_masuk_id">
                                 <option value="">--- Pilih ---</option>
                                 @foreach ($surat as $item)
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-form-label"for="id">Intruksi</label>
                             <div class="col-sm-9">
-                                <select class="form-control mt-2 @error('intruksi') is-invalid @enderror" name="intruksi"
+                                <select required class="form-control mt-2 @error('intruksi') is-invalid @enderror" name="intruksi"
                                     id="intruksi">
                                     <option value="">--- Pilih ---</option>
                                     <option value="Untuk diketahui" @if (old('intruksi') == 'Untuk diketahui') {{ 'selected' }} @endif>
@@ -95,7 +95,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 col-form-label"for="kepada">Daftar Penerima</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('kepada') is-invalid @enderror"
+                                <input required type="text" class="form-control @error('kepada') is-invalid @enderror"
                                     name="kepada" id="kepada" placeholder="Kepada" value="{{ old('kepada') }}">
                                 @error('kepada')
                                     <div class="invalid-feedback">{{ $message }}</div>

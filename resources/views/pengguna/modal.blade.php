@@ -13,19 +13,19 @@
                     @csrf
 
                     <div class="form-group">
-                        <label class="col-sm-3 col-form-label"for="id">Nama</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                name="name" id="name" placeholder="KodeJenis Surat" value="{{ old('name', $row->name) }}">
+                        <label class="col-sm-12 col-form-label"for="id">Nama</label>
+                        <div class="col-sm-12">
+                            <input required type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" id="name" placeholder="Nama" value="{{ old('name', $row->name) }}">
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 col-form-label"for="email">E-mail</label>
-                        <div class="col-sm-9">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $row->email) }}" required autocomplete="email">
+                        <label class="col-sm-12 col-form-label"for="email">E-mail</label>
+                        <div class="col-sm-12">
+                            <input required id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $row->email) }}" required autocomplete="email">
 
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -33,9 +33,10 @@
                         </div>
                     </div>
 
+                    @if ($row->role_id == 2)
                     <div class="form-group">
                         <label for="role_id">Role</label>
-                        <select class="form-control mt-2 @error('role_id') is-invalid @enderror"
+                        <select required class="form-control mt-2 @error('role_id') is-invalid @enderror"
                             name="role_id" id="role_id">
                             <option value="">--- Pilih ---</option>
                             @foreach ($roles as $item)
@@ -49,9 +50,10 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    @endif
 
                     <button type="submit" id="ubah" class="btn btn-gradient-primary me-2">Ubah</button>
-                    <a href="{{ route('jenissurat') }}" class="btn btn-danger">Batal</a>
+                    <a href="{{ route('pengguna') }}" class="btn btn-danger">Batal</a>
                 </form>
             </div>
         </div>

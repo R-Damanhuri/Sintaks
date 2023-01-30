@@ -12,7 +12,6 @@ export default defineConfig({
                 'public/assets/vendors/js/vendor.bundle.base.js',
                 'public/assets/js/off-canvas.js',
                 'public/assets/js/hoverable-collapse.js',
-                'public/assets/js/misc.js',
 
                 'public/assets/vendors/chart.js/Chart.min.js',
                 'public/assets/js/dashboard.js'

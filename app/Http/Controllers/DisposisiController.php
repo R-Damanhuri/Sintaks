@@ -104,7 +104,7 @@ class DisposisiController extends Controller
 
         view()->share('data', $data);
         $pdf = PDF::loadview('disposisi.templatPDF');
-        return $pdf->download('disposisi-'.$data->surat_masuk->no_surat.'.pdf');
+        return $pdf->download('disposisi_'.$data->surat_masuk->no_surat.'.pdf');
     }
 
     public function menuTambah($id)
