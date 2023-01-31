@@ -33,10 +33,7 @@
             font-size: 11px;
         }
 
-        h1,
-        h2,
         h3,
-        h5,
         p {
             text-align: center;
             margin-bottom: 0;
@@ -68,22 +65,44 @@
             margin-bottom: 0;
             border-top: 3px solid #000000;
         }
+
+        img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .image {
+            float: left;
+            width: 20%;
+            text-align: right;
+            margin-left: 20px;
+        }
+
+        .text {
+            width: 80%;
+            margin-left: 20px;
+        }
     </style>
 </head>
 
 <body>
-    <h4>
-        PEMERINTAH PROVINSI JAWA TENGAH <br>
-        DINAS PENDIDIKAN DAN KEBUDAYAAN
-    </h4>
-    <h3>
-        SEKOLAH MENENGAH ATAS NEGERI 1 <br>
-        KAJEN
-    </h3>
-    <p>
-        Alamat: Jl. Mandurorejo Kajen Telp. (0285) 381708 Pekalongan 51161 <br>
-        Website : www.smankajen.sch.id Email : sman1kajen@yahoo.com
-    </p>
+    <div class="image">
+        <img src="{{ public_path('assets\images\logo-jateng.jpg') }}">
+    </div>
+    <div class="text">
+        <h4>
+            PEMERINTAH PROVINSI JAWA TENGAH <br>
+            DINAS PENDIDIKAN DAN KEBUDAYAAN
+        </h4>
+        <h3>
+            SEKOLAH MENENGAH ATAS NEGERI 1 <br>
+            KAJEN
+        </h3>
+        <p>
+            Alamat: Jl. Mandurorejo Kajen Telp. (0285) 381708 Pekalongan 51161 <br>
+            Website : www.smankajen.sch.id Email : sman1kajen@yahoo.com
+        </p>
+    </div>
 
     <hr class="solid-3">
     <hr class="solid-1">

@@ -8,6 +8,7 @@ use App\Models\SuratMasuk;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use PDF;
+use Carbon\Carbon;
 
 class DisposisiController extends Controller
 {
@@ -101,8 +102,12 @@ class DisposisiController extends Controller
     public function exportpdf($id)
     {
         $data = Disposisi::find($id);
+        $today = Carbon::today();
 
-        view()->share('data', $data);
+        view()->share([
+            'data' => $data,
+            'today' => $today
+        ]);
         $pdf = PDF::loadview('disposisi.templatPDF');
         return $pdf->download('disposisi_'.$data->surat_masuk->no_surat.'.pdf');
     }
