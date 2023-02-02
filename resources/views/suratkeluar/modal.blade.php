@@ -88,7 +88,7 @@
                     </div>
 
                     <button type="submit" id="ubah" class="btn btn-gradient-primary me-2">Ubah</button>
-                    <a href="{{ route('suratmasuk') }}" class="btn btn-danger">Batal</a>
+                    <a href="{{ route('suratkeluar') }}" class="btn btn-danger">Batal</a>
                 </form>
             </div>
         </div>

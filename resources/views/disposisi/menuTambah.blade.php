@@ -112,7 +112,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-gradient-primary me-2">Tambah</button>
-                        <a href="{{ route('disposisi') }}" class="btn btn-danger">Batal</a>
+                        <a href="{{ route('suratmasuk') }}" class="btn btn-danger">Batal</a>
                     </form>
                 </div>
             </div>

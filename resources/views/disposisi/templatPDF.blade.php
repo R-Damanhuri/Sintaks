@@ -84,23 +84,23 @@
 
 <body>
     <div class="row th">
-    <div class="image">
-        <img src="{{ public_path('assets\images\logo-jateng.jpg') }}">
-    </div>
-    <div class="text">
-        <h4>
-            PEMERINTAH PROVINSI JAWA TENGAH <br>
-            DINAS PENDIDIKAN DAN KEBUDAYAAN
-        </h4>
-        <h3>
-            SEKOLAH MENENGAH ATAS NEGERI 1 <br>
-            KAJEN
-        </h3>
-        <p class="center">
-            Alamat : Jl. Mandurorejo Kajen Telp. (0285) 381708 Pekalongan 51161 <br>
-            Website : www.smankajen.sch.id Email : sman1kajen@yahoo.com
-        </p>
-    </div>
+        <div class="image">
+            <img src="{{ public_path('assets\images\logo-jateng.jpg') }}">
+        </div>
+        <div class="text">
+            <h4>
+                PEMERINTAH PROVINSI JAWA TENGAH <br>
+                DINAS PENDIDIKAN DAN KEBUDAYAAN
+            </h4>
+            <h3>
+                SEKOLAH MENENGAH ATAS NEGERI 1 <br>
+                KAJEN
+            </h3>
+            <p class="center">
+                Alamat : Jl. Mandurorejo Kajen Telp. (0285) 381708 Pekalongan 51161 <br>
+                Website : www.smankajen.sch.id Email : sman1kajen@yahoo.com
+            </p>
+        </div>
     </div>
 
     <table id="myTable">
@@ -115,7 +115,7 @@
                 <td colspan="1">
                     <p class="field">
                         Diselesaikan Tanggal: <br>
-                          Yang Menyelesaikan:
+                        Yang Menyelesaikan:
                     </p>
                 </td>
             </tr>

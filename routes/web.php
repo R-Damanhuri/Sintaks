@@ -38,11 +38,6 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
      
 });
 
-//Pengarsip
-Route::middleware(['auth', 'ceklevel:2'])->group(function () {
-    Route::get('/pengarsiphome', [App\Http\Controllers\PengarsipController::class, 'index'])->name('pengarsiphome');
-});
-
 //Admin dan Pengarsip
 Route::middleware(['auth', 'ceklevel:1,2'])->group(function () {
     Route::get('/suratmasuk', [App\Http\Controllers\SuratMasukController::class, 'index'])->name('suratmasuk');
@@ -68,4 +63,7 @@ Route::middleware(['auth', 'ceklevel:1,2'])->group(function () {
     Route::get('/disposisi/hapus/{id}', [App\Http\Controllers\DisposisiController::class, 'hapus'])->name('disposisi.hapus');
     Route::post('/disposisi/update/{id}', [App\Http\Controllers\DisposisiController::class, 'update'])->name('disposisi.update');
     Route::get('/disposisi/exportpdf/{id}', [App\Http\Controllers\DisposisiController::class, 'exportpdf'])->name('disposisi.exportpdf'); 
+
+    Route::get('/pengaturan/{id}', [App\Http\Controllers\PengaturanController::class,'index'])->name('pengaturan');
+    Route::post('/pengaturan/update/{id}', [App\Http\Controllers\PengaturanController::class, 'update'])->name('pengaturan.update');
 });

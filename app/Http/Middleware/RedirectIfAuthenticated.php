@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check() && Auth::user()->role_id == 1) {
                 return redirect()->route('home');
             }elseif (Auth::guard($guard)->check() && Auth::user()->role_id == 2) {
-                return redirect()->route('pengarsiphome');
+                return redirect()->route('suratmasuk');
             }else{
                 return $next($request);
             }

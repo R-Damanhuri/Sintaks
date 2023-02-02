@@ -42,7 +42,7 @@
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                     <span class="mdi mdi-menu"></span>
                 </button>
-                <div class="search-field d-none d-md-block">
+                {{-- <div class="search-field d-none d-md-block">
                     <form class="d-flex align-items-center h-100" action="#">
                         <div class="input-group">
                             <div class="input-group-prepend bg-transparent">
@@ -52,7 +52,7 @@
                                 placeholder="Cari di sini ...">
                         </div>
                     </form>
-                </div>
+                </div> --}}
 
                 <ul class="navbar-nav navbar-nav-right">
                     <!-- Authentication Links -->
@@ -73,7 +73,7 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="nav-profile-img">
-                                    <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="image">
+                                    <img src="../assets/images/profile/{{auth()->user()->foto}}" alt="image">
                                 </div>
                                 <div class="nav-profile-text">
                                     <p class="mb-1 text-black">{{ Auth::user()->name }}</p>
@@ -122,7 +122,7 @@
                     </li>
                     <li class="nav-item {{ (request()->is('pengguna*')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('pengguna') }}">
-                            <span class="menu-title">Data Pengguna</span>
+                            <span class="menu-title">Data Pengarsip</span>
                             <i class="mdi mdi-account-multiple menu-icon"></i>
                         </a>
                     </li>
@@ -163,7 +163,12 @@
                             <i class="mdi mdi-pencil menu-icon"></i>
                         </a>
                     </li> --}}
-
+                    <li class="nav-item {{ (request()->is('pengaturan*')) ? 'active' : '' }}">
+                        <a class="nav-link" href="/pengaturan/{{ auth()->user()->id }}">
+                            <span class="menu-title">Pengaturan</span>
+                            <i class="mdi mdi mdi-settings menu-icon"></i>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- partial -->
@@ -176,7 +181,7 @@
                 <footer class="footer">
                     <div class="container-fluid d-flex justify-content-between">
                         <span class="text-muted d-block text-center text-sm-start d-sm-inline-block">Copyright ©
-                            bootstrapdash.com 2021</span>
+                            SMA Negeri 1 Kajen 2023</span>
                     </div>
                 </footer>
             </main>
@@ -187,9 +192,7 @@
     <!-- container-scroller -->
 
     <!-- plugins:js -->
-    @vite(['public/assets/vendors/js/vendor.bundle.base.js', 'public/assets/js/off-canvas.js', 'public/assets/js/hoverable-collapse.js', 'public/assets/vendors/chart.js/Chart.min.js', 'public/assets/js/dashboard.js'])
-
-    {{-- Ini dihapus karena menyebabkan nav-item active semua saat klik disposisikan:   'public/assets/js/misc.js' --}}
+    @vite(['public/assets/vendors/js/vendor.bundle.base.js', 'public/assets/js/off-canvas.js', 'public/assets/js/hoverable-collapse.js', 'public/assets/js/misc.js', 'public/assets/vendors/chart.js/Chart.min.js', 'public/assets/js/dashboard.js'])
     
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>

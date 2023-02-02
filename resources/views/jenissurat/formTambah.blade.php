@@ -22,36 +22,30 @@
                     <form class="forms-sample" method="post" action="/jenissurat/tambah" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"for="id">Kode Jenis Surat</label>
-                            <div class="col-sm-9">
-                                <input required type="number" class="form-control @error('id') is-invalid @enderror"
-                                    name="id" id="id" placeholder="Kode Surat" value="{{ old('id') }}">
-                                @error('id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="form-group mb-4">
+                            <label class="col-sm-12 form-label"for="id">Kode Jenis Surat</label>
+                            <input required type="number" class="form-control @error('id') is-invalid @enderror"
+                                name="id" id="id" placeholder="Kode Surat" value="{{ old('id') }}">
+                            @error('id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"for="nama_jenis">Nama Jenis Surat</label>
-                            <div class="col-sm-9">
-                                <input required type="text" class="form-control @error('nama_jenis') is-invalid @enderror"
-                                    name="nama_jenis" id="nama_jenis" placeholder="Jenis Surat" value="{{ old('nama_jenis') }}">
-                                @error('nama_jenis')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="form-group mb-4">
+                            <label class="col-sm-12 form-label"for="nama_jenis">Nama Jenis Surat</label>
+                            <input required type="text" class="form-control @error('nama_jenis') is-invalid @enderror"
+                                name="nama_jenis" id="nama_jenis" placeholder="Jenis Surat" value="{{ old('nama_jenis') }}">
+                            @error('nama_jenis')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"for="keterangan">Keterangan</label>
-                            <div class="col-sm-9">
-                                <input required type="text" class="form-control @error('keterangan') is-invalid @enderror"
-                                    name="keterangan" id="keterangan" placeholder="keterangan" value="{{ old('keterangan') }}">
-                                @error('keterangan')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="form-group mb-4">
+                            <label class="col-sm-12 form-label"for="keterangan">Keterangan</label>
+                            <input required type="text" class="form-control @error('keterangan') is-invalid @enderror"
+                                name="keterangan" id="keterangan" placeholder="keterangan" value="{{ old('keterangan') }}">
+                            @error('keterangan')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-gradient-primary me-2">Tambah</button>

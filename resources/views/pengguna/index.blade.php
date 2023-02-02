@@ -11,13 +11,13 @@
                 <i class="mdi mdi-account-multiple"></i>
             </span>
             <span class="page-title-text">
-                Data Pengguna
+                Data Pengarsip
             </span>
         </h3>
         <div class="text-end">
             <button onclick="location.href='{{ route('pengguna.formTambah') }}'"
                 class="btn-sm btn-gradient-primary ms-1 my-1 rounded-3"><i class="mdi mdi-plus icon-sm"></i> Tambah
-                Pengguna</button>
+                Pengarsip</button>
         </div>
     </div>
     <div class="row">
@@ -30,7 +30,9 @@
                                 <th>No</th>
                                 <th>Username</th>
                                 <th>E-mail</th>
-                                <th>Role</th>
+                                <th>Nama Lengkap</th>
+                                <th>NIP</th>
+                                {{-- <th>Role</th> --}}
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -38,19 +40,21 @@
                             @foreach ($data as $row)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $row->name }}</td>
+                                    <td><img class="img-xs me-2 rounded-circle"
+                                            src="../assets/images/profile/{{ $row->foto }}" alt="image">
+                                        {{ $row->name }}</td>
                                     <td>{{ $row->email }}</td>
-                                    <td>{{ $row->role->name }}</td>
+                                    <td>{{ $row->fullname }}</td>
+                                    <td>{{ $row->nip }}</td>
+                                    {{-- <td>{{ $row->role->name }}</td> --}}
                                     <td>
                                         <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1"
                                             data-bs-toggle="modal" data-bs-target="#editModal{{ $row->id }}"><i
                                                 class="mdi mdi-pencil"></i></a>
 
-                                        @if ($row->role_id == 2)
-                                            <a title="Hapus" href="#" class="btn-sm btn-danger delete ms-1"
-                                                data-username="{{ $row->name }} " data-id="{{ $row->id }}"><i
-                                                    class="mdi mdi-delete"></i></a>
-                                        @endif
+                                        <a title="Hapus" href="#" class="btn-sm btn-danger delete ms-1"
+                                            data-username="{{ $row->name }} " data-id="{{ $row->id }}"><i
+                                                class="mdi mdi-delete"></i></a>
                                     </td>
                                 </tr>
 

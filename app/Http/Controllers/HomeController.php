@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $jml_users = DB::table('users')->count();
+        $jml_users = DB::table('users')->where('role_id',2)->count();
         $jml_sm = DB::table('surat_masuks')->count();
         $jml_sk = DB::table('surat_keluars')->count();
 

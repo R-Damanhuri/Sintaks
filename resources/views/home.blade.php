@@ -37,7 +37,7 @@
             <div class="card bg-gradient-success card-img-holder text-white">
                 <div class="card-body">
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h3 class="font-weight-normal mb-3">Pengguna <i class="mdi mdi-account-group icon-md float-end"></i>
+                    <h3 class="font-weight-normal mb-3">Pengarsip <i class="mdi mdi-account-group icon-md float-end"></i>
                     </h3>
                     <h1>{{ $jml_users }}</h1>
                 </div>

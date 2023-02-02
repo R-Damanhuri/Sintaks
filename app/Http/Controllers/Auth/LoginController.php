@@ -31,7 +31,7 @@ class LoginController extends Controller
         if(Auth()->user()->role_id == 1){
             return route ('home');
         }elseif (Auth()->user()->role_id == 2){
-            return route ('pengarsiphome');
+            return route ('suratmasuk');
         }
     }
 
