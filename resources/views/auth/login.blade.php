@@ -25,8 +25,8 @@
                                         placeholder="E-mail" id="email" name="email" value="{{ old('email') }}"
                                         required autocomplete="email" autofocus>
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
+                                        <span class="invalid-feedback text-start" role="alert">
+                                            <p>{{ $message }}</p>
                                         </span>
                                     @enderror
                                 </div>
@@ -73,7 +73,17 @@
     </div>
     <!-- container-scroller -->
 
-    <!-- plugins:js -->
-
-    </html>
+    {{-- SweetAlert Sukses Link Reset --}}
+    @if ($message = Session::get('status'))
+        <script>
+            Swal.fire({
+                // position: 'top',
+                icon: 'success',
+                title: 'Berhasil!',
+                text: 'Link reset password berhasil dikirim.',
+                timer: 1500,
+                showConfirmButton: false,
+            })
+        </script>
+    @endif
 @endsection

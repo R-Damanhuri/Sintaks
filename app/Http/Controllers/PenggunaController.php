@@ -73,28 +73,53 @@ class PenggunaController extends Controller
 
     public function update(Request $request, $id)
     {
-        Validator::make($request->all(), [
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'fullname' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:18'],
             'foto' => ['mimes:jpg, png'],
-        ]);
+        ];
 
-        $data = User::find($id);
-        $data->update($request->all());
-        if ($request->hasFile('foto')) {
-            File::delete(public_path('assets/images/profile/' . $data->foto));
+        $message = [
+            'name.required' => 'Nama harus diisi.',
+            'email.required' => 'E-mail harus diisi.',
+            'password.required' => 'Password harus diisi.',
+            'fullname.required' => 'Nama lengkap harus diisi.',
+            'nip.required' => 'NIP harus diisi.',
 
-            $request->file('foto')->move('assets/images/profile/', $request->file('foto')->getClientOriginalName());
-            $data->foto = $request->file('foto')->getClientOriginalName();
-            $data->save();
+            'email.unique' => 'E-mail sudah ada.',
+            'email.email' => 'Format e-mail salah.',
+            'password.min' => 'Password minimal menggunakan 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
+
+            'foto.mimes' => 'Format file yang diperbolehkan adalah JPG dan PNG',
+        ];
+
+        $validasi = Validator::make($request->all(), $rules, $message);
+
+        $validasi = Validator::make($request->all(), $rules, $message);
+        if ($validasi->fails()) {
+            return redirect()
+                ->back()
+                ->with('update_fails', 'Data Gagal Diubah.')
+                ->withErrors($validasi);
+        } else {
+            $data = User::find($id);
+            $data->update($request->all());
+            if ($request->hasFile('foto')) {
+                File::delete(public_path('assets/images/profile/' . $data->foto));
+
+                $request->file('foto')->move('assets/images/profile/', $request->file('foto')->getClientOriginalName());
+                $data->foto = $request->file('foto')->getClientOriginalName();
+                $data->save();
+            }
+
+            return redirect()
+                ->back()
+                ->with('update_success', 'Data Berhasil Diubah.');
         }
-
-        return redirect()
-            ->back()
-            ->with('update_success', 'Data Berhasil Diubah.');
     }
 
     public function hapus($id)

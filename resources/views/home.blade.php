@@ -91,4 +91,17 @@
     {{-- <script src="{{ asset('public/assets/vendors/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('public/assets/js/jquery.cookie.js') }}"></script>
     <script src="{{ asset('public/assets/js/dashboard.js') }}"></script> --}}
+
+    @if ($message = Session::get('status'))
+        <script>
+            Swal.fire({
+                // position: 'top',
+                icon: 'success',
+                title: 'Berhasil!',
+                text: 'Password berhasil direset.',
+                timer: 1500,
+                showConfirmButton: false,
+            })
+        </script>
+    @endif
 @endsection

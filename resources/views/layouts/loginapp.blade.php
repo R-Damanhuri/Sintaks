@@ -13,12 +13,15 @@
     <!-- plugins: css-->
     @vite(['public/assets/vendors/mdi/css/materialdesignicons.min.css', 'public/assets/vendors/css/vendor.bundle.base.css', 'public/assets/css/style.css'])
 
-    <!-- Fonts -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles" />
+
 
     <!-- Shortcut Icon-->
-    <link rel="shortcut icon" href="assets/images/favicon.ico"/>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
 
     <!-- Scripts -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </head>
 
 <body>

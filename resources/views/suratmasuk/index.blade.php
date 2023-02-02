@@ -58,14 +58,16 @@
                                     <td>{{ date('d-m-Y', strtotime($row->tanggal_terima)) }}</td>
                                     {{-- <td>{{ $row->updated_at->diffForHumans() }}</td> --}}
                                     <td>
-                                        <a title="Lihat Berkas" href="" class="btn-sm btn-info " id="pdf" data-bs-toggle="modal"
-                                            data-bs-target="#pdfModal{{ $row->id }}"><i class="mdi mdi-file"></i></a>
+                                        <a title="Lihat Berkas" href="" class="btn-sm btn-info " id="pdf"
+                                            data-bs-toggle="modal" data-bs-target="#pdfModal{{ $row->id }}"><i
+                                                class="mdi mdi-file"></i></a>
                                     </td>
                                     <td>
-                                        <a title="Disposisikan" href="/disposisi/menuTambah/{{ $row->id }}" class="btn-sm btn-success ms-1"><i
-                                                data-id = "{{ $row->id }}" class="mdi mdi-send"></i></a>
-                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1" data-bs-toggle="modal"
-                                            data-bs-target="#editModal{{ $row->id }}"><i
+                                        <a title="Disposisikan" href="/disposisi/menuTambah/{{ $row->id }}"
+                                            class="btn-sm btn-success ms-1"><i data-id="{{ $row->id }}"
+                                                class="mdi mdi-send"></i></a>
+                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1"
+                                            data-bs-toggle="modal" data-bs-target="#editModal{{ $row->id }}"><i
                                                 class="mdi mdi-pencil"></i></a>
                                         <a title="Hapus" href="#" class="btn-sm btn-danger delete ms-1"
                                             data-nomor="{{ $row->no_surat }} " data-id="{{ $row->id }}"><i
@@ -104,6 +106,18 @@
                 title: 'Berhasil!',
                 text: 'Data berhasil diubah.',
                 timer: 1000,
+                showConfirmButton: false,
+            })
+        </script>
+    @endif
+
+    @if ($message = Session::get('status'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: 'Password berhasil direset.',
+                timer: 1500,
                 showConfirmButton: false,
             })
         </script>
