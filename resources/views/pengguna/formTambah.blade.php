@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Sintaks | Data Pengguna
+    Sintaks | Data Pengarsip
 @endsection
 
 @section('content')
@@ -9,14 +9,14 @@
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-account-multiple"></i>
-            </span> Data Pengguna
+            </span> Data Pengarsip
         </h3>
     </div>
     <div class="row">
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Tambah Pengguna</h4>
+                    <h4 class="card-title">Tambah Pengarsip</h4>
                     <p class="card-description"> Isikan dengan data yang benar </p>
 
                     <form class="forms-sample" method="post" action="{{ route('pengguna.tambah') }}"

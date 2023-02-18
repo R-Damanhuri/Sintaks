@@ -75,8 +75,7 @@ class PenggunaController extends Controller
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'fullname' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:18'],
             'foto' => ['mimes:jpg, png'],
@@ -85,21 +84,17 @@ class PenggunaController extends Controller
         $message = [
             'name.required' => 'Nama harus diisi.',
             'email.required' => 'E-mail harus diisi.',
-            'password.required' => 'Password harus diisi.',
             'fullname.required' => 'Nama lengkap harus diisi.',
             'nip.required' => 'NIP harus diisi.',
 
             'email.unique' => 'E-mail sudah ada.',
             'email.email' => 'Format e-mail salah.',
-            'password.min' => 'Password minimal menggunakan 8 karakter.',
-            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
 
             'foto.mimes' => 'Format file yang diperbolehkan adalah JPG dan PNG',
         ];
 
         $validasi = Validator::make($request->all(), $rules, $message);
 
-        $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {
             return redirect()
                 ->back()

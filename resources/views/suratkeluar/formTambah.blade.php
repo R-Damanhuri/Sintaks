@@ -24,46 +24,15 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label"for="no_surat">Nomor Surat</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" class="form-control @error('no_surat') is-invalid @enderror"
-                                            name="no_surat" id="no_surat" placeholder="Nomor Surat"
-                                            value="{{ old('no_surat') }}">
-                                        @error('no_surat')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label"for="penerima">Penerima</label>
-                                    <div class="col-sm-9">
-                                        <input required type="text" class="form-control @error('penerima') is-invalid @enderror"
-                                            name="penerima" id="penerima" placeholder="Penerima"
-                                            value="{{ old('penerima') }}">
-                                        @error('penerima')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
                                     <label class="col-sm-3 col-form-label"for="jenis_surat_id">Jenis Surat</label>
                                     <div class="col-sm-9">
-                                        <select required class="form-control mt-2 @error('jenis_surat_id') is-invalid @enderror"
+                                        <select required
+                                            class="form-control mt-2 @error('jenis_surat_id') is-invalid @enderror"
                                             name="jenis_surat_id" id="jenis_surat_id">
                                             <option value="">--- Pilih ---</option>
                                             @foreach ($jenis as $item)
                                                 <option value="{{ $item->id }}"
-                                                    @if (old('jenis_surat_id')== $item->id)
-                                                        {{'selected'}}
-                                                    @endif
-                                                    >
+                                                    @if (old('jenis_surat_id') == $item->id) {{ 'selected' }} @endif>
                                                     {{ $item->nama_jenis }}
                                                 </option>
                                             @endforeach
@@ -89,15 +58,52 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label"for="no_surat">Nomor Surat</label>
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="kode">000/</span>
+                                                </div>
+                                                <input required type="text"
+                                                    class="form-control @error('no_surat') is-invalid @enderror"
+                                                    name="no_surat" id="no_surat" placeholder="Nomor Surat"
+                                                    value="{{ old('no_surat') }}">
+                                            </div>
+                                        </div>
+
+                                        @error('no_surat')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label"for="penerima">Penerima</label>
+                                    <div class="col-sm-9">
+                                        <input required type="text"
+                                            class="form-control @error('penerima') is-invalid @enderror" name="penerima"
+                                            id="penerima" placeholder="Penerima" value="{{ old('penerima') }}">
+                                        @error('penerima')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label"for="perihal">Perihal</label>
                                     <div class="col-sm-9">
-                                        <input required type="text" class="form-control @error('perihal') is-invalid @enderror"
-                                            name="perihal" id="perihal" placeholder="Perihal"
-                                            value="{{ old('perihal') }}">
+                                        <input required type="text"
+                                            class="form-control @error('perihal') is-invalid @enderror" name="perihal"
+                                            id="perihal" placeholder="Perihal" value="{{ old('perihal') }}">
                                         @error('perihal')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -108,8 +114,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label"for="file">File</label>
                                     <div class="col-sm-9">
-                                        <input required type="file" class="form-control @error('file') is-invalid @enderror"
-                                            name="file" id="file" value="{{ old('file') }}">
+                                        <input required type="file"
+                                            class="form-control @error('file') is-invalid @enderror" name="file"
+                                            id="file" value="{{ old('file') }}">
                                         @error('file')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -138,4 +145,19 @@
             })
         </script>
     @endif
+
+    <script>
+        $(document).ready(function() {
+            $('#jenis_surat_id').on('change', function() {
+                var kode = $(this).find(":selected").val();
+                $('#kode').html(kode + '/');
+            });
+
+            $('form').on('submit', function() {
+                var kode = $('#kode').text();
+                var no_surat = $('#no_surat').val();
+                $('#no_surat').val(kode + no_surat);
+            });
+        });
+    </script>
 @endsection

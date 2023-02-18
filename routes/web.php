@@ -35,6 +35,12 @@ Route::middleware(['auth', 'ceklevel:1'])->group(function () {
     Route::post('/pengguna/tambah', [App\Http\Controllers\PenggunaController::class, 'tambah'])->name('pengguna.tambah');
     Route::get('/pengguna/hapus/{id}', [App\Http\Controllers\PenggunaController::class, 'hapus'])->name('pengguna.hapus');
     Route::post('/pengguna/update/{id}', [App\Http\Controllers\PenggunaController::class, 'update'])->name('pengguna.update');
+
+    Route::get('/pengolah', [App\Http\Controllers\PengolahController::class, 'index'])->name('pengolah');
+    Route::get('/pengolah/formTambah', [App\Http\Controllers\PengolahController::class, 'formTambah'])->name('pengolah.formTambah');
+    Route::post('/pengolah/tambah', [App\Http\Controllers\PengolahController::class, 'tambah'])->name('pengolah.tambah');
+    Route::get('/pengolah/hapus/{id}', [App\Http\Controllers\PengolahController::class, 'hapus'])->name('pengolah.hapus');
+    Route::post('/pengolah/update/{id}', [App\Http\Controllers\PengolahController::class, 'update'])->name('pengolah.update');
 });
 
 //Admin dan Pengarsip
@@ -56,6 +62,7 @@ Route::middleware(['auth', 'ceklevel:1,2'])->group(function () {
     Route::get('/suratkeluar/exportpdf', [App\Http\Controllers\SuratKeluarController::class, 'exportpdf'])->name('suratkeluar.exportpdf');
 
     Route::get('/disposisi', [App\Http\Controllers\DisposisiController::class, 'index'])->name('disposisi');
+    Route::get('/disposisi/getPengolah/{id}', [App\Http\Controllers\DisposisiController::class, 'getPengolah'])->name('disposisi.getPengolah');
     Route::get('/disposisi/formTambah', [App\Http\Controllers\DisposisiController::class, 'formTambah'])->name('disposisi.formTambah');
     Route::get('/disposisi/menuTambah/{id}', [App\Http\Controllers\DisposisiController::class, 'menuTambah'])->name('disposisi.menuTambah');
     Route::post('/disposisi/tambah', [App\Http\Controllers\DisposisiController::class, 'tambah'])->name('disposisi.tambah');

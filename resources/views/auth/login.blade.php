@@ -7,7 +7,8 @@
 @section('content')
     <div class="container-scroller">
         <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth">
+            <div class="content-wrapper d-flex align-items-center auth bg-login"
+                style="background-image: url({{ asset('/assets/images/background2.jpg') }}); background-position: center; background-size: cover;">
                 <div class="row flex-grow">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-center p-5">

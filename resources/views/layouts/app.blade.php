@@ -16,7 +16,8 @@
 
     <!-- Layout styles -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+        id="theme-styles" />
 
     <!-- Shortcut Icon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
@@ -73,7 +74,7 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="nav-profile-img">
-                                    <img src="../assets/images/profile/{{auth()->user()->foto}}" alt="image">
+                                    <img src="../assets/images/profile/{{ auth()->user()->foto }}" alt="image">
                                 </div>
                                 <div class="nav-profile-text">
                                     <p class="mb-1 text-black">{{ Auth::user()->name }}</p>
@@ -107,51 +108,56 @@
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
-                    @if (auth()->user()->role_id==1)
-                        
-                    <li class="nav-item sidebar-actions">
-                        <div class="border-bottom">
-                            <h6 class="font-weight-normal mt-4 menu-title">Admin</h6>
-                        </div>
-                    </li>
-                    <li class="nav-item {{ (request()->is('home')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('home') }}">
-                            <span class="menu-title">Dashboard</span>
-                            <i class="mdi mdi-home menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('pengguna*')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('pengguna') }}">
-                            <span class="menu-title">Data Pengarsip</span>
-                            <i class="mdi mdi-account-multiple menu-icon"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item {{ (request()->is('jenissurat*')) ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('jenissurat') }}">
-                            <span class="menu-title">Jenis Surat</span>
-                            <i class="mdi mdi-view-grid menu-icon"></i>
-                        </a>
-                    </li>
+                    @if (auth()->user()->role_id == 1)
+                        <li class="nav-item sidebar-actions">
+                            <div class="border-bottom">
+                                <h6 class="font-weight-normal mt-4 menu-title">Admin</h6>
+                            </div>
+                        </li>
+                        <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('home') }}">
+                                <span class="menu-title">Dashboard</span>
+                                <i class="mdi mdi-home menu-icon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ request()->is('pengguna*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('pengguna') }}">
+                                <span class="menu-title">Data Pengarsip</span>
+                                <i class="mdi mdi-account-multiple menu-icon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ request()->is('pengolah*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('pengolah') }}">
+                                <span class="menu-title">Data Pengolah</span>
+                                <i class="mdi mdi-account-multiple menu-icon"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ request()->is('jenissurat*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('jenissurat') }}">
+                                <span class="menu-title">Jenis Surat</span>
+                                <i class="mdi mdi-view-grid menu-icon"></i>
+                            </a>
+                        </li>
                     @endif
-                    
+
                     <li class="nav-item sidebar-actions">
                         <div class="border-bottom">
                             <h6 class="font-weight-normal mt-4">Pengarsip</h6>
                         </div>
                     </li>
-                    <li class="nav-item {{ (request()->is('suratmasuk*')) ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('suratmasuk*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('suratmasuk') }}">
                             <span class="menu-title">Surat Masuk</span>
                             <i class="mdi mdi-email-open menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->is('suratkeluar*')) ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('suratkeluar*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('suratkeluar') }}">
                             <span class="menu-title">Surat Keluar</span>
                             <i class="mdi mdi-email menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item {{ (request()->is('disposisi*')) ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('disposisi*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('disposisi') }}">
                             <span class="menu-title">Disposisi</span>
                             <i class="mdi mdi mdi-send menu-icon"></i>
@@ -163,7 +169,7 @@
                             <i class="mdi mdi-pencil menu-icon"></i>
                         </a>
                     </li> --}}
-                    <li class="nav-item {{ (request()->is('pengaturan*')) ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('pengaturan*') ? 'active' : '' }}">
                         <a class="nav-link" href="/pengaturan/{{ auth()->user()->id }}">
                             <span class="menu-title">Pengaturan</span>
                             <i class="mdi mdi mdi-settings menu-icon"></i>
@@ -193,12 +199,13 @@
 
     <!-- plugins:js -->
     @vite(['public/assets/vendors/js/vendor.bundle.base.js', 'public/assets/js/off-canvas.js', 'public/assets/js/hoverable-collapse.js', 'public/assets/js/misc.js', 'public/assets/vendors/chart.js/Chart.min.js', 'public/assets/js/dashboard.js'])
-    
+
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        datatabel = new DataTable("#myTable");
+        const datatabel = new DataTable("#myTable");
     </script>
+
 </body>
 
 </html>

@@ -37,7 +37,7 @@ class SuratMasukController extends Controller
             'perihal' => 'required',
             'pengirim' => 'required',
             'tanggal_surat' => 'required|before_or_equal:' . date(DATE_ATOM),
-            'tanggal_terima' => 'required|before_or_equal:' . date(DATE_ATOM),
+            'tanggal_terima' => 'required|after_or_equal:tanggal_surat|before_or_equal:' . date(DATE_ATOM),
             'file' => 'required|mimes:pdf',
         ];
 
@@ -53,6 +53,7 @@ class SuratMasukController extends Controller
             'no_surat.unique' => 'Nomor surat sudah ada.',
             'tanggal_surat.before_or_equal' => 'Tanggal surat tidak boleh lebih dari tanggal sekarang.',
             'tanggal_terima.before_or_equal' => 'Tanggal terima tidak boleh lebih dari tanggal sekarang.',
+            'tanggal_terima.after_or_equal' => 'Tanggal terima tidak boleh kurang dari tanggal surat.',
             'file.mimes' => 'Format file yang diterima hanya PDF.',
         ];
 

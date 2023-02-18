@@ -137,7 +137,11 @@
                 </td>
                 <td class="center">
                     <h3>DITERUSKAN KEPADA</h3> <br>
-                    <p class="field">{{ $data->kepada }}</p>
+                    <p class="field">
+                        @foreach (explode(',', $data->kepada) as $kpd)
+                            {{ $pengolah->where('id', $kpd)->pluck('fullname')->first() .' ( ' .$jabatan->where('id',$pengolah->where('id', $kpd)->pluck('jabatan_id')->first())->pluck('name')->first() .' ), ' }}
+                        @endforeach
+                    </p>
                 </td>
             </tr>
 

@@ -19,7 +19,8 @@
                     <h4 class="card-title">Tambah Disposisi</h4>
                     <p class="card-description"> Isikan dengan data yang benar </p>
 
-                    <form class="forms-sample" method="post" action="/disposisi/tambah" enctype="multipart/form-data">
+                    <form onsubmit="kepada.value = pengolah.value" class="forms-sample" method="post"
+                        action="/disposisi/tambah" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group mb-4">
@@ -47,7 +48,9 @@
                                     @if (old('intruksi') == 'Untuk diketahui') {{ 'selected' }} @endif>
                                     Untuk diketahui
                                 </option>
-                                Untuk dipertimbangkan
+                                <option value="Untuk dipertimbangkan"
+                                    @if (old('intruksi') == 'Untuk dipertimbangkan') {{ 'selected' }} @endif>
+                                    Untuk dipertimbangkan
                                 </option>
                                 <option value="Untuk diselesaikan lebih lanjut"
                                     @if (old('intruksi') == 'Untuk diselesaikan lebih lanjut') {{ 'selected' }} @endif>
@@ -99,18 +102,41 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="form-group mb-4">
+
+                        <div class="form-group mb-4" id="daftar">
                             <label class="col-sm-12 form-label"for="kepada">Daftar Penerima</label>
-                            <div class="col-sm-12">
-                                <input required type="text" class="form-control @error('kepada') is-invalid @enderror"
-                                    name="kepada" id="kepada" placeholder="Kepada" value="{{ old('kepada') }}">
-                                @error('kepada')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+
+                            <div class="col-sm-12 form-control" id="isi">
+                                <div class="overflow-auto" style="max-height: 220px;">
+                                    <div class="row">
+                                        @php $count = 0 @endphp
+                                        @foreach ($pengolah as $item)
+                                            @if ($count % 3 == 0)
+                                    </div>
+                                    <div class="row">
+                                        @endif
+                                        <div class="col-4">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input
+                                                        class="checkbox @if (old('kepada') == $item->fullname) {{ 'checked' }} @endif"
+                                                        type="checkbox" value="{{ $item->id }}" name="kepada[]">
+                                                    {{ $item->fullname . ' ( ' . $item->jabatan->name . ' )' }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @php $count++ @endphp
+                                        @endforeach
+                                    </div>
+
+                                    @error('kepada')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-gradient-primary me-2">Tambah</button>
+                        <button type="submit" id="tambah" class="btn btn-gradient-primary me-2">Tambah</button>
                         <a href="{{ route('disposisi') }}" class="btn btn-danger">Batal</a>
                     </form>
                 </div>
@@ -130,4 +156,78 @@
             })
         </script>
     @endif
+
+    {{-- <script>
+        $(document).ready(function() {
+            $('#jabatan').on('change', function() {
+                var jabatanID = $(this).val();
+                if (jabatanID) {
+                    $.ajax({
+                        url: '/disposisi/getPengolah/' + jabatanID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            console.log(data);
+                            if (data) {
+                                $('#pengolah').empty();
+                                $('#pengolah').append(
+                                    '<option hidden>--- Pilih Nama ---</option>');
+                                $.each(data, function(key, pengolah) {
+                                    $('select[id="pengolah"]').append(
+                                        '<option value="' + pengolah.id +
+                                        '">' + pengolah
+                                        .fullname + '</option>');
+                                });
+                            } else {
+                                $('#pengolah').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#pengolah').empty();
+                }
+            });
+        });
+    </script> --}}
+
+    {{-- <script>
+        const container = document.getElementById('isi');
+
+        // Call addInput() function on button click
+        function addInput() {
+            let input = document.createElement('div');
+            input.classList.add('input-group');
+            input.innerHTML = `
+        <div class="col-sm-2">
+            <select required class="form-control mt-2" id="jabatan">
+                <option value="">--- Pilih Jabatan ---</option>
+                @foreach ($jabatan as $item)
+                    <option value="{{ $item->id }}"
+                        @if (old('jabatan') == $item->name) {{ 'selected' }} @endif>
+                        {{ $item->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-sm-8">
+            <select required class="form-control mt-2" id="pengolah">
+            </select>
+        </div>
+    `;
+            container.appendChild(input);
+        }
+
+        function deleteInput() {
+            let inputs = container.querySelectorAll('.input-group');
+            if (inputs.length > 1) {
+                let lastInput = inputs[inputs.length - 1];
+                container.removeChild(lastInput);
+            } else {
+                alert("Minimal terdapat 1 penerima")
+            }
+        }
+    </script> --}}
 @endsection

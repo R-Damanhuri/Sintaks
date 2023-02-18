@@ -41,14 +41,20 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $row->intruksi }}</td>
-                                    <td>{{ $row->kepada }}</td>
+                                    <td>
+                                        @foreach (explode(',', $row->kepada) as $kpd)
+                                            <li class="">
+                                                {{ $pengolah->where('id', $kpd)->pluck('fullname')->first() .' ( ' .$jabatan->where('id',$pengolah->where('id', $kpd)->pluck('jabatan_id')->first())->pluck('name')->first() .' ) ' }}
+                                            </li>
+                                        @endforeach
+                                    </td>
                                     <td>{{ $row->surat_masuk->no_surat }}</td>
                                     <td>{{ $row->catatan }}</td>
                                     <td>
-                                        <a title="Cetak" href="/disposisi/exportpdf/{{$row->id}}" class="btn-sm btn-info edit ms-1"><i
-                                                class="mdi mdi-printer"></i></a>
-                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1" data-bs-toggle="modal"
-                                            data-bs-target="#editModal{{ $row->id }}"><i
+                                        <a title="Cetak" href="/disposisi/exportpdf/{{ $row->id }}"
+                                            class="btn-sm btn-info edit ms-1"><i class="mdi mdi-printer"></i></a>
+                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1"
+                                            data-bs-toggle="modal" data-bs-target="#editModal{{ $row->id }}"><i
                                                 class="mdi mdi-pencil"></i></a>
                                         <a title="Hapus" href="#" class="btn-sm btn-danger delete ms-1"
                                             data-id="{{ $row->id }}" data-nomor="{{ $row->surat_masuk->no_surat }}"><i
