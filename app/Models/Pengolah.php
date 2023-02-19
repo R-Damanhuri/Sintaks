@@ -10,14 +10,15 @@ class Pengolah extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'fullname',
-        'email',
-        'jabatan_id'
-    ];
+    protected $fillable = ['fullname', 'email', 'jabatan_id'];
 
     public function jabatan()
     {
         return $this->belongsTo('App\Models\Jabatan');
+    }
+
+    public function routeNotificationFor()
+    {
+        return $this->email;
     }
 }

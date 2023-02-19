@@ -100,14 +100,36 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 col-form-label"for="kepada">Daftar Penerima</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control @error('kepada') is-invalid @enderror"
-                                    name="kepada" id="kepada" placeholder="Kepada" value="{{ old('kepada') }}">
-                                @error('kepada')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                        <div class="form-group mb-4" id="daftar">
+                            <label class="col-sm-12 form-label"for="kepada">Daftar Penerima</label>
+
+                            <div class="col-sm-12 form-control" id="isi">
+                                <div class="overflow-auto" style="max-height: 220px;">
+                                    <div class="row">
+                                        @php $count = 0 @endphp
+                                        @foreach ($pengolah as $item)
+                                            @if ($count % 3 == 0)
+                                    </div>
+                                    <div class="row">
+                                        @endif
+                                        <div class="col-4">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input
+                                                        class="checkbox @if (old('kepada') == $item->fullname) {{ 'checked' }} @endif"
+                                                        type="checkbox" value="{{ $item->id }}" name="kepada[]">
+                                                    {{ $item->fullname . ' ( ' . $item->jabatan->name . ' )' }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @php $count++ @endphp
+                                        @endforeach
+                                    </div>
+
+                                    @error('kepada')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 

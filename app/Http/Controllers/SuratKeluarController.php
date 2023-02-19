@@ -139,14 +139,17 @@ class SuratKeluarController extends Controller
         }
     }
 
-    public function exportexcel()
+    public function exportexcel($min, $max)
     {
-        return Excel::download(new SuratKeluarExport, 'laporan-surat-keluar.xlsx', null, $headers = ['no_surat', 'jenis_surat_id', 'perihal','penerima','tanggal_surat']);
+        return Excel::download(new SuratKeluarExport($min, $max), 'laporan-surat-keluar.xlsx', null, $headers = ['no_surat', 'jenis_surat_id', 'perihal','penerima','tanggal_surat']);
     }
 
-    public function exportpdf()
+    public function exportpdf($min, $max)
     {
-        $data = SuratKeluar::all();
+        $minDate = date($min);
+        $maxDate = date($max);
+        
+        $data = SuratKeluar::query()->whereBetween('tanggal_surat', [$minDate, $maxDate])->get();
         view()->share('data', $data);
         $pdf = PDF::loadview('suratkeluar.templatPDF');
 

@@ -19,11 +19,11 @@
             <button onclick="location.href='{{ route('suratkeluar.formTambah') }}'"
                 class="btn-sm btn-gradient-primary ms-1 my-1 rounded-3"><i class="mdi mdi-plus icon-sm"></i> Tambah
                 Surat</button>
-            <button onclick="location.href = '{{ route('suratkeluar.exportpdf') }}' "
-                class="btn-sm btn-gradient-danger ms-1 my-1 rounded-3"><i class="mdi mdi-file-pdf icon-sm"></i>
+            <button class="btn-sm btn-gradient-danger ms-1 my-1 rounded-3 pdf" title="Export PDF" data-bs-toggle="modal"
+                data-bs-target="#exportPDFModal"><i class="mdi mdi-file-pdf icon-sm"></i>
                 PDF</button>
-            <button onclick="location.href = '{{ route('suratkeluar.exportexcel') }}' "
-                class="btn-sm btn-gradient-success ms-1 my-1 rounded-3"><i class="mdi mdi-file-excel icon-sm"></i>
+            <button class="btn-sm btn-gradient-success ms-1 my-1 rounded-3" title="Export Excel" data-bs-toggle="modal"
+                data-bs-target="#exportExcelModal"><i class="mdi mdi-file-excel icon-sm"></i>
                 Excel</button>
         </div>
     </div>
@@ -56,12 +56,13 @@
                                     <td>{{ date('d-m-Y', strtotime($row->tanggal_surat)) }}</td>
                                     {{-- <td>{{ $row->updated_at->diffForHumans() }}</td> --}}
                                     <td>
-                                        <a title="Lihat Berkas" href="" class="btn-sm btn-info " id="pdf" data-bs-toggle="modal"
-                                            data-bs-target="#pdfModal{{ $row->id }}"><i class="mdi mdi-file"></i></a>
+                                        <a title="Lihat Berkas" href="" class="btn-sm btn-info " id="pdf"
+                                            data-bs-toggle="modal" data-bs-target="#pdfModal{{ $row->id }}"><i
+                                                class="mdi mdi-file"></i></a>
                                     </td>
                                     <td>
-                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1" data-bs-toggle="modal"
-                                            data-bs-target="#editModal{{ $row->id }}"><i
+                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1"
+                                            data-bs-toggle="modal" data-bs-target="#editModal{{ $row->id }}"><i
                                                 class="mdi mdi-pencil"></i></a>
                                         <a title="Hapus" href="#" class="btn-sm btn-danger delete ms-1"
                                             data-nomor="{{ $row->no_surat }} " data-id="{{ $row->id }}"><i

@@ -12,6 +12,8 @@ use Illuminate\Validation\Rule;
 use PDF;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\DisposisiNotification;
+use Illuminate\Support\Facades\Notification;
 
 class DisposisiController extends Controller
 {
@@ -138,12 +140,35 @@ class DisposisiController extends Controller
             'jabatan' => $jabatan,
         ]);
         $pdf = PDF::loadview('disposisi.templatPDF');
+
+        // Simpan file PDF ke dalam folder public
+        $file_path = public_path('FileDisposisi/temp');
+        $pdf->save($file_path);
+
+        $pengolah_ids = explode(',', $data->kepada);
+        $pengolah_kirim = Pengolah::whereIn('id', $pengolah_ids)->get();
+        $file_surat = public_path('FileSuratMasuk/' . $data->surat_masuk->file); // Path ke file surat
+        $file_disposisi = public_path('FileDisposisi/temp'); // Path ke file disposisi
+        $no_surat = $data->surat_masuk->no_surat; // Nama file surat
+
+        foreach ($pengolah_kirim as $pk) {
+            Notification::send($pk, new DisposisiNotification($data, $file_surat, $file_disposisi, $no_surat));
+        }
+
+        // $filename = str_replace(['/', '\\'], '_', $data->surat_masuk->no_surat);
+        // return response()->download($file_disposisi, 'disposisi_' . $filename . '.pdf', ['Content-Type' => 'application/pdf']);
+
         return $pdf->download('disposisi_' . $data->surat_masuk->no_surat . '.pdf');
+        // return redirect()
+        //     ->back()
+        //     ->with('send_success', 'Disposisi berhasil dikirim kepada para pengolah.');
     }
 
     public function menuTambah($id)
     {
         $surat = SuratMasuk::find($id);
-        return view('disposisi.menuTambah', compact('surat'));
+        $jabatan = Jabatan::all();
+        $pengolah = Pengolah::all();
+        return view('disposisi.menuTambah', compact('surat', 'jabatan', 'pengolah'));
     }
 }

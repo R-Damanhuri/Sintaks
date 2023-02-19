@@ -19,11 +19,11 @@
             <button onclick="location.href='{{ route('suratmasuk.formTambah') }}'"
                 class="btn-sm btn-gradient-primary ms-1 my-1 rounded-3"><i class="mdi mdi-plus icon-sm"></i> Tambah
                 Surat</button>
-            <button onclick="location.href = '{{ route('suratmasuk.exportpdf') }}' "
-                class="btn-sm btn-gradient-danger ms-1 my-1 rounded-3"><i class="mdi mdi-file-pdf icon-sm"></i>
+            <button class="btn-sm btn-gradient-danger ms-1 my-1 rounded-3" title="Export PDF" data-bs-toggle="modal"
+                data-bs-target="#exportPDFModal"><i class="mdi mdi-file-pdf icon-sm"></i>
                 PDF</button>
-            <button onclick="location.href = '{{ route('suratmasuk.exportexcel') }}' "
-                class="btn-sm btn-gradient-success ms-1 my-1 rounded-3"><i class="mdi mdi-file-excel icon-sm"></i>
+            <button class="btn-sm btn-gradient-success ms-1 my-1 rounded-3" title="Export Excel" data-bs-toggle="modal"
+                data-bs-target="#exportExcelModal"><i class="mdi mdi-file-excel icon-sm"></i>
                 Excel</button>
         </div>
     </div>
@@ -31,14 +31,6 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body table-responsive">
-                    {{-- <tr>
-                        <td>Minimum date:</td>
-                        <td><input type="date" id="min-date" name="min-date"></td>
-                    </tr>
-                    <tr>
-                        <td>Maximum date:</td>
-                        <td><input type="date" id="max-date" name="max-date"></td>
-                    </tr> --}}
                     <table class="table" id="myTable">
                         <thead>
                             <tr>

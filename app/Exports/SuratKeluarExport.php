@@ -9,6 +9,12 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class SuratKeluarExport implements FromCollection, WithHeadings
 {
+    public function __construct($min, $max)
+    {
+        $this->min = $min;
+        $this->max = $max;
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -19,7 +25,7 @@ class SuratKeluarExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        $surat = SuratKeluar::all($this->columns);
+        $surat = SuratKeluar::whereBetween('tanggal_surat', [$this->min, $this->max])->get($this->columns);
         $jenis = JenisSurat::all();
         foreach ($surat as $item) {
             $item['jenis_surat_id'] = $item->jenis_surat->nama_jenis;
