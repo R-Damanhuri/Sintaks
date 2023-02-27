@@ -60,24 +60,6 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        {{-- <div class="form-group mb-4">
-                            <label class="col-sm-12 form-label" for="role_id">Role</label>
-                            <select required class="form-control @error('role_id') is-invalid @enderror" name="role_id"
-                                id="role_id">
-                                <option value="">--- Pilih ---</option>
-                                @foreach ($roles as $item)
-                                    @if ($item->id != 1)
-                                        <option value="{{ $item->id }}"
-                                            @if (old('role_id') == $item->id) {{ 'selected' }} @endif>
-                                            {{ $item->name }}
-                                        </option>
-                                    @endif
-                                @endforeach
-                            </select>
-                            @error('role_id')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
                         <div class="form-group mb-4">
                             <label class="col-sm-12 form-label"for="password">Password</label>
                             <input required id="password" type="password"

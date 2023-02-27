@@ -106,8 +106,6 @@
                 <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                {{-- <form class="forms-sample" id="modal-form" method="get" enctype="multipart/form-data">
-                    @csrf --}}
                 <div class="form-group">
                     <label for="tanggal_surat">Tanggal Surat Awal (Opsional)</label>
                     <input type="date" class="form-control" id="min" name="min"
@@ -136,8 +134,6 @@
                 <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                {{-- <form class="forms-sample" id="modal-form" method="get" enctype="multipart/form-data">
-                    @csrf --}}
                 <div class="form-group">
                     <label for="tanggal_surat">Tanggal Surat Awal (Opsional)</label>
                     <input type="date" class="form-control" id="minExcel" name="minExcel"
@@ -150,7 +146,6 @@
                 </div>
 
                 <button id="exportExcel" class="btn btn-gradient-primary me-2">Cetak</button>
-                {{-- </form> --}}
             </div>
         </div>
     </div>

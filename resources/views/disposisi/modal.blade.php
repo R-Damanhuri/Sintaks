@@ -124,16 +124,6 @@
                         </div>
                     </div>
 
-                    {{-- <div class="form-group mb-4">
-                        <label class="col-sm-12 form-label"for="kepada">Daftar Penerima</label>
-                        <input required type="text" class="form-control @error('kepada') is-invalid @enderror"
-                            name="kepada" id="kepada" placeholder="Kepada" value="{{ $row->kepada }}">
-
-                        @error('kepada')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-
                     <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
                     <a href="{{ route('disposisi') }}" class="btn btn-danger">Batal</a>
                 </form>

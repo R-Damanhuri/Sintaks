@@ -8,15 +8,14 @@
                 <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form class="forms-sample" id="modal-form" method="post"
-                    action="/pengguna/update/{{ $row->id }}" enctype="multipart/form-data">
+                <form class="forms-sample" id="modal-form" method="post" action="/pengguna/update/{{ $row->id }}"
+                    enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group mb-4">
                         <label class="col-sm-12 form-label" for="name">Username</label>
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                            name="name" value="{{ old('name', $row->name) }}" required autocomplete="name"
-                            autofocus>
+                            name="name" value="{{ old('name', $row->name) }}" required autocomplete="name" autofocus>
                         @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -47,23 +46,6 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="form-group mb-4">
-                        <label class="col-sm-12 form-label" for="role_id">Role</label>
-                        <select disabled required class="form-control @error('role_id') is-invalid @enderror" name="role_id"
-                            id="role_id">
-                            <option value="">--- Pilih ---</option>
-                            @foreach ($roles as $item)
-                                <option value="{{ $item->id }}"
-                                    @if ($row->role_id == $item->id) {{ 'selected' }} @endif>
-                                    {{ $item->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('role_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-
                     <div class="form-group mb-4">
                         <label class="col-sm-12 form-label"for="email">E-mail</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -87,7 +69,7 @@
                     </div>
 
                     <button type="submit" id="ubah" class="btn btn-gradient-primary me-2">Ubah</button>
-                    <a href="{{route('pengguna')}}" class="btn btn-danger">Batal</a>
+                    <a href="{{ route('pengguna') }}" class="btn btn-danger">Batal</a>
                 </form>
             </div>
         </div>
