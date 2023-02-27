@@ -142,13 +142,13 @@ class DisposisiController extends Controller
         $pdf = PDF::loadview('disposisi.templatPDF');
 
         // Simpan file PDF ke dalam folder public
-        $file_path = public_path('FileDisposisi/temp');
+        $file_path = public_path('FileDisposisi/temp.pdf');
         $pdf->save($file_path);
 
         $pengolah_ids = explode(',', $data->kepada);
         $pengolah_kirim = Pengolah::whereIn('id', $pengolah_ids)->get();
         $file_surat = public_path('FileSuratMasuk/' . $data->surat_masuk->file); // Path ke file surat
-        $file_disposisi = public_path('FileDisposisi/temp'); // Path ke file disposisi
+        $file_disposisi = public_path('FileDisposisi/temp.pdf'); // Path ke file disposisi
         $no_surat = $data->surat_masuk->no_surat; // Nama file surat
 
         foreach ($pengolah_kirim as $pk) {

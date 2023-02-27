@@ -51,8 +51,8 @@
                                     <td>{{ $row->surat_masuk->no_surat }}</td>
                                     <td>{{ $row->catatan }}</td>
                                     <td>
-                                        <a title="Cetak" href="/disposisi/exportpdf/{{ $row->id }}"
-                                            class="btn-sm btn-info edit ms-1"><i class="mdi mdi-printer"></i></a>
+                                        <a title="Cetak dan Kirim" href="/disposisi/exportpdf/{{ $row->id }}"
+                                            class="btn-sm btn-success edit ms-1"><i class="mdi mdi-file-send"></i></a>
                                         <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1"
                                             data-bs-toggle="modal" data-bs-target="#editModal{{ $row->id }}"><i
                                                 class="mdi mdi-pencil"></i></a>

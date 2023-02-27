@@ -34,11 +34,11 @@ class DisposisiNotification extends Notification
             ->line('Silakan untuk menindaklanjuti disposisi surat masuk sesuai intruksi.')
             ->line('Hardfile disposisi dan surat masuk terkait akan segera diserahkan kepada Anda.')
             ->attach($this->file_surat, [
-                'as' => $this->no_surat, // Nama file yang akan ditampilkan di lampiran email
+                'as' => $this->no_surat . '.pdf', // Nama file yang akan ditampilkan di lampiran email
                 'mime' => 'application/pdf', // Tipe file surat
             ])
             ->attach($this->file_disposisi, [
-                'as' => 'disposisi_' . $this->no_surat, // Nama file yang akan ditampilkan di lampiran email
+                'as' => 'disposisi_' . $this->no_surat . '.pdf', // Nama file yang akan ditampilkan di lampiran email
                 'mime' => 'application/pdf', // Tipe file surat
             ]);
     }

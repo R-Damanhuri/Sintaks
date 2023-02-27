@@ -18,7 +18,7 @@
 
 
     <!-- Shortcut Icon-->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="assets/images/logo-mini.svg" />
 
     <!-- Scripts -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>

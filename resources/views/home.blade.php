@@ -49,8 +49,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Statitik Bulan Ini</h4>
-                    <canvas id="traffic-chart"></canvas>
-                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                    <canvas id="traffic-chart" data-sm-bln="{{ $sm_bln }}" data-sk-bln="{{ $sk_bln }}"></canvas>
+                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4">
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,10 +60,12 @@
                 <div class="card-body">
                     <div class="clearfix">
                         <h4 class="card-title float-left">Statistik Tahun Ini</h4>
-                        <div id="visit-sale-chart-legend"
+                        <div id="traffic-year-chart-legend"
                             class="rounded-legend legend-horizontal legend-top-right float-right"></div>
                     </div>
-                    <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                    <canvas id="traffic-year-chart" data-sk-th="@php echo json_encode($sk_th); @endphp"
+                        data-sm-th="@php echo json_encode($sm_th); @endphp" class="mt-4"></canvas>
+
                 </div>
             </div>
         </div>
@@ -71,26 +74,23 @@
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Surat Masuk</h4>
-                    <canvas id="traffic-chart"></canvas>
-                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                    <h4 class="card-title">Jenis Surat Masuk Tahun Ini</h4>
+                    <canvas id="jenis-sm-chart" data-sm-jns-count="@php echo json_encode($sm_jns_count); @endphp"
+                        data-sm-jns-name="@php echo json_encode($sm_jns_name); @endphp"></canvas>
+                    <div id="jenis-sm-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Surat Keluar</h4>
-                    <canvas id="traffic-chart"></canvas>
-                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                    <h4 class="card-title">Jenis Surat Keluar Tahun Ini</h4>
+                    <canvas id="jenis-sk-chart" data-sk-jns-count="@php echo json_encode($sk_jns_count); @endphp"></canvas>
+                    <div id="jenis-sk-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
                 </div>
             </div>
         </div>
     </div>
-
-    {{-- <script src="{{ asset('public/assets/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('public/assets/js/jquery.cookie.js') }}"></script>
-    <script src="{{ asset('public/assets/js/dashboard.js') }}"></script> --}}
 
     @if ($message = Session::get('status'))
         <script>

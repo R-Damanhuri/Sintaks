@@ -20,7 +20,7 @@
         id="theme-styles" />
 
     <!-- Shortcut Icon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="shortcut icon" href="assets/images/logo-mini.svg" />
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"

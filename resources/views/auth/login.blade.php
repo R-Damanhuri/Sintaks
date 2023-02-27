@@ -13,7 +13,8 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-center p-5">
                             <div class="brand-logo">
-                                <img src="{{ asset('/assets/images/logo.svg') }}">
+                                <img class="sc-1" src="{{ asset('/assets/images/logo.svg') }}">
+                                <p class="font-weight-light text-small mt-2">Sistem Informasi Tata Kelola Surat</p>
                             </div>
                             <h4>Selamat Datang</h4>
                             <h6 class="font-weight-light">Silakan login untuk melanjutkan.</h6>

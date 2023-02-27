@@ -11346,7 +11346,7 @@ code {
 @media (min-width: 1200px) {
   .grid-margin-xl-0 {
     margin-bottom: 0; } }
-
+    
 .img-xl {
       width: 150px;
       height: 150px; }
@@ -11367,6 +11367,10 @@ code {
 .image-grouped img {
   width: 35px;
   height: 35px; }
+
+.sc-1{
+  transform: scale(1.2);
+}
 
 .stretch-card {
   display: -webkit-box;
