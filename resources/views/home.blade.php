@@ -76,7 +76,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Jenis Surat Masuk Tahun Ini</h4>
                     <canvas id="jenis-sm-chart" data-sm-jns-count="@php echo json_encode($sm_jns_count); @endphp"
-                        data-sm-jns-name="@php echo json_encode($sm_jns_name); @endphp"></canvas>
+                        data-jns-name="{{ json_encode($jns_name) }}"></canvas>
                     <div id="jenis-sm-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
                 </div>
             </div>
@@ -85,7 +85,8 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Jenis Surat Keluar Tahun Ini</h4>
-                    <canvas id="jenis-sk-chart" data-sk-jns-count="@php echo json_encode($sk_jns_count); @endphp"></canvas>
+                    <canvas id="jenis-sk-chart" data-sk-jns-count="@php echo json_encode($sk_jns_count); @endphp"
+                        data-jns-name="{{ json_encode($jns_name) }}"></canvas>
                     <div id="jenis-sk-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
                 </div>
             </div>

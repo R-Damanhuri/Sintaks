@@ -65,31 +65,31 @@ class HomeController extends Controller
             ->pluck('count')
             ->toArray();
 
-        #Surat masuk jenis count
+        #Jenis surat masuk count
         $sm_jns_count = DB::table('surat_masuks')
             ->select(DB::raw('jenis_surat_id'), DB::raw('COUNT(*) as count'))
-            ->whereYear('created_at', '=', $currentYear)
+            ->whereYear('created_at', $currentYear)
             ->groupBy('jenis_surat_id')
             ->orderBy('jenis_surat_id')
             ->pluck('count')
             ->toArray();
 
-        #Surat keluar jenis count
+        #Jenis surat keluar count
         $sk_jns_count = DB::table('surat_keluars')
             ->select(DB::raw('jenis_surat_id'), DB::raw('COUNT(*) as count'))
-            ->whereYear('created_at', '=', $currentYear)
+            ->whereYear('created_at', $currentYear)
             ->groupBy('jenis_surat_id')
             ->orderBy('jenis_surat_id')
             ->pluck('count')
             ->toArray();
 
-        #Surat masuk jenis name
-        $sm_jns_name = DB::table('jenis_surats')
+        #Jenis surat name
+        $jns_name = DB::table('jenis_surats')
             ->select(DB::raw('id'), DB::raw('nama_jenis'))
             ->orderBy('id')
             ->pluck('nama_jenis')
             ->toArray();
 
-        return view('home', compact('jml_users', 'jml_sm', 'jml_sk', 'sm_bln', 'sk_bln', 'sm_th', 'sk_th', 'sm_jns_count', 'sk_jns_count', 'sm_jns_name'));
+        return view('home', compact('jml_users', 'jml_sm', 'jml_sk', 'sm_bln', 'sk_bln', 'sm_th', 'sk_th', 'sm_jns_count', 'sk_jns_count', 'jns_name'));
     }
 }
