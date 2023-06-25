@@ -82,6 +82,7 @@ class HomeController extends Controller
                 $sm_jns_count[$jenis_surat_id] = 0;
             }
         }
+        ksort($sm_jns_count);
         $sm_jns_count = array_values($sm_jns_count);
 
         #Jenis surat keluar count
@@ -101,6 +102,7 @@ class HomeController extends Controller
                 $sk_jns_count[$jenis_surat_id] = 0;
             }
         }
+        ksort($sk_jns_count);
         $sk_jns_count = array_values($sk_jns_count);
 
         #Jenis surat name

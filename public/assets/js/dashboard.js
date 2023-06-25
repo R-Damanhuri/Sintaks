@@ -93,7 +93,6 @@
                 .getAttribute("data-jns-name");
 
             var jenis_name = JSON.parse(jenisName);
-
             // jumlah warna yang ingin digunakan pada gradient
             var num_colors = jenisName.length;
 
