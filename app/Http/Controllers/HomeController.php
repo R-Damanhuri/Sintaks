@@ -67,21 +67,41 @@ class HomeController extends Controller
 
         #Jenis surat masuk count
         $sm_jns_count = DB::table('surat_masuks')
-            ->select(DB::raw('jenis_surat_id'), DB::raw('COUNT(*) as count'))
-            ->whereYear('created_at', $currentYear)
-            ->groupBy('jenis_surat_id')
-            ->orderBy('jenis_surat_id')
-            ->pluck('count')
+            ->leftJoin('jenis_surats', 'surat_masuks.jenis_surat_id', '=', 'jenis_surats.id')
+            ->select('surat_masuks.jenis_surat_id', DB::raw('COUNT(*) as count'))
+            ->whereYear('surat_masuks.created_at', $currentYear)
+            ->groupBy('surat_masuks.jenis_surat_id')
+            ->orderBy('surat_masuks.jenis_surat_id')
+            ->pluck('count', 'surat_masuks.jenis_surat_id')
             ->toArray();
+
+        // Mengisi jenis_surat_id yang tidak ada dengan nilai 0
+        $jenis_surat_ids = DB::table('jenis_surats')->pluck('id');
+        foreach ($jenis_surat_ids as $jenis_surat_id) {
+            if (!isset($sm_jns_count[$jenis_surat_id])) {
+                $sm_jns_count[$jenis_surat_id] = 0;
+            }
+        }
+        $sm_jns_count = array_values($sm_jns_count);
 
         #Jenis surat keluar count
         $sk_jns_count = DB::table('surat_keluars')
-            ->select(DB::raw('jenis_surat_id'), DB::raw('COUNT(*) as count'))
-            ->whereYear('created_at', $currentYear)
-            ->groupBy('jenis_surat_id')
-            ->orderBy('jenis_surat_id')
-            ->pluck('count')
+            ->leftJoin('jenis_surats', 'surat_keluars.jenis_surat_id', '=', 'jenis_surats.id')
+            ->select('surat_keluars.jenis_surat_id', DB::raw('COUNT(*) as count'))
+            ->whereYear('surat_keluars.created_at', $currentYear)
+            ->groupBy('surat_keluars.jenis_surat_id')
+            ->orderBy('surat_keluars.jenis_surat_id')
+            ->pluck('count', 'surat_keluars.jenis_surat_id')
             ->toArray();
+
+        // Mengisi jenis_surat_id yang tidak ada dengan nilai 0
+        $jenis_surat_ids = DB::table('jenis_surats')->pluck('id');
+        foreach ($jenis_surat_ids as $jenis_surat_id) {
+            if (!isset($sk_jns_count[$jenis_surat_id])) {
+                $sk_jns_count[$jenis_surat_id] = 0;
+            }
+        }
+        $sk_jns_count = array_values($sk_jns_count);
 
         #Jenis surat name
         $jns_name = DB::table('jenis_surats')
