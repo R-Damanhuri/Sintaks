@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
             'nip' => '123456789012345678',
             'foto' => 'pic-1.png',
             'role_id' => 1,
-            'email' => "damans.remix2061@gmail.com",
+            'email' => "sintaks.sman1kajen@gmail.com",
             'password' => Hash::make("12345678")
         ]);
     }

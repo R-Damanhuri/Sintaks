@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SuratMasuk;
+use App\Models\SuratKeluar;
 use App\Models\JenisSurat;
 use App\Models\Disposisi;
 use File;
@@ -66,6 +67,7 @@ class JenisSuratController extends Controller
     {
         $data = JenisSurat::find($id);
         $surats = DB::table('surat_masuks')->get()->where('jenis_surat_id', $id);
+        $suratkeluars = DB::table('surat_keluars')->get()->where('jenis_surat_id', $id);
         foreach ($surats as $surat) {
             if (File::exists(public_path('FileSuratMasuk/' . $surat->file))) {
                 File::delete(public_path('FileSuratMasuk/' . $surat->file));
@@ -76,7 +78,14 @@ class JenisSuratController extends Controller
             }
         }
 
+        foreach ($suratkeluars as $suratkeluar) {
+            if (File::exists(public_path('FileSuratKeluar/' . $suratkeluar->file))) {
+                File::delete(public_path('FileSuratKeluar/' . $suratkeluar->file));
+            }
+        }
+
         $data->surat_masuk()->delete();
+        $data->surat_keluar()->delete();
         $data->delete();
         return redirect()
             ->route('jenissurat')

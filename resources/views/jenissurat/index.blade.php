@@ -42,8 +42,8 @@
                                     <td>{{ $row->nama_jenis }}</td>
                                     <td>{{ $row->keterangan }}</td>
                                     <td>
-                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1" data-bs-toggle="modal"
-                                            data-bs-target="#editModal{{ $row->id }}"><i
+                                        <a title="Ubah" href="#" class="btn-sm btn-warning edit ms-1"
+                                            data-bs-toggle="modal" data-bs-target="#editModal{{ $row->id }}"><i
                                                 class="mdi mdi-pencil"></i></a>
                                         <a title="Hapus" href="#" class="btn-sm btn-danger delete ms-1"
                                             data-jenis="{{ $row->nama_jenis }} " data-id="{{ $row->id }}"><i
